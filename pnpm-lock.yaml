@@ -8,9 +8,18 @@ dependencies:
   '@astrojs/check':
     specifier: ^0.5.4
     version: 0.5.4(typescript@5.3.3)
+  '@types/js-yaml':
+    specifier: ^4.0.9
+    version: 4.0.9
+  '@types/node':
+    specifier: ^20.11.18
+    version: 20.11.18
   astro:
     specifier: ^4.4.0
-    version: 4.4.0(typescript@5.3.3)
+    version: 4.4.0(@types/node@20.11.18)(typescript@5.3.3)
+  js-yaml:
+    specifier: ^4.1.0
+    version: 4.1.0
   typescript:
     specifier: ^5.3.3
     version: 5.3.3
@@ -784,6 +793,10 @@ packages:
       '@types/unist': 3.0.2
     dev: false
 
+  /@types/js-yaml@4.0.9:
+    resolution: {integrity: sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg==}
+    dev: false
+
   /@types/mdast@4.0.3:
     resolution: {integrity: sha512-LsjtqsyF+d2/yFOYaN22dHZI1Cpwkrj+g06G8+qtUKlhovPW89YhqSnfKtMbkgmEtYpH2gydRNULd6y8mciAFg==}
     dependencies:
@@ -798,6 +811,12 @@ packages:
     resolution: {integrity: sha512-ABoYdNQ/kBSsLvZAekMhIPMQ3YUZvavStpKYs7BjLLuKVmIMA0LUgZ7b54zzuWJRbHF80v1cNf4r90Vd6eMQDg==}
     dependencies:
       '@types/unist': 2.0.10
+    dev: false
+
+  /@types/node@20.11.18:
+    resolution: {integrity: sha512-ABT5VWnnYneSBcNWYSCuR05M826RoMyMSGiFivXGx6ZUIsXb9vn4643IEwkg2zbEOSgAiSogtapN2fgc4mAPlw==}
+    dependencies:
+      undici-types: 5.26.5
     dev: false
 
   /@types/unist@2.0.10:
@@ -963,7 +982,7 @@ packages:
     resolution: {integrity: sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==}
     dev: false
 
-  /astro@4.4.0(typescript@5.3.3):
+  /astro@4.4.0(@types/node@20.11.18)(typescript@5.3.3):
     resolution: {integrity: sha512-JAsMrm1Z6W4Iqg9Q7LW/6lCXrqa4jndEOlR/yu7NGNP0BrPwSM8i4+yzya6hxgsNvyyVK8ywthaNhFmqd8Z+cg==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
     hasBin: true
@@ -1028,7 +1047,7 @@ packages:
       tsconfck: 3.0.2(typescript@5.3.3)
       unist-util-visit: 5.0.0
       vfile: 6.0.1
-      vite: 5.1.3
+      vite: 5.1.3(@types/node@20.11.18)
       vitefu: 0.2.5(vite@5.1.3)
       which-pm: 2.1.1
       yargs-parser: 21.1.1
@@ -3316,6 +3335,10 @@ packages:
     hasBin: true
     dev: false
 
+  /undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+    dev: false
+
   /unherit@3.0.1:
     resolution: {integrity: sha512-akOOQ/Yln8a2sgcLj4U0Jmx0R5jpIg2IUyRrWOzmEbjBtGzBdHtSeFKgoEcoH4KYIG/Pb8GQ/BwtYm0GCq1Sqg==}
     dev: false
@@ -3470,7 +3493,7 @@ packages:
       vfile-message: 4.0.2
     dev: false
 
-  /vite@5.1.3:
+  /vite@5.1.3(@types/node@20.11.18):
     resolution: {integrity: sha512-UfmUD36DKkqhi/F75RrxvPpry+9+tTkrXfMNZD+SboZqBCMsxKtO52XeGzzuh7ioz+Eo/SYDBbdb0Z7vgcDJew==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -3498,6 +3521,7 @@ packages:
       terser:
         optional: true
     dependencies:
+      '@types/node': 20.11.18
       esbuild: 0.19.12
       postcss: 8.4.35
       rollup: 4.11.0
@@ -3513,7 +3537,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 5.1.3
+      vite: 5.1.3(@types/node@20.11.18)
     dev: false
 
   /volar-service-css@0.0.29(@volar/language-service@2.0.4):
