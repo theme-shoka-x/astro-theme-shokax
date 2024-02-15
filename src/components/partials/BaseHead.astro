@@ -1,0 +1,56 @@
+---
+import { BASE_URL } from "../../utils/config";
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+type Props = {
+  title: string;
+  description: string;
+  keywords?: string | string[];
+};
+
+const {
+  title,
+  description,
+  keywords = title,
+} = Astro.props;
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/>
+<link rel="shortcut icon" href=`${BASE_URL}/images/favicon.ico` />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Theme Color -->
+<meta name="theme-color" content="#222" />
+
+<!-- User Renderer -->
+<meta name="renderer" content="webkit" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta
+  name="keywords"
+  content={Array.isArray(keywords) ? keywords.join(",") : keywords}
+/>
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
