@@ -1,6 +1,7 @@
 ---
 import Image from 'astro/components/Image.astro'
-import { basic, footer, site } from '../utils/config'
+import { footer, site } from '@utils/config'
+import { __ } from '@utils/i18n'
 
 const copyrightYear = new Date().getFullYear()
 ---
@@ -24,7 +25,16 @@ const copyrightYear = new Date().getFullYear()
         { /* TODO */}
     </div>}
     { footer.powered && <div class="powered-by">
-        { /* TODO */}
+        <div class="powered-by">
+            { __('footer.powered') }
+            <a href="https://astro.build" rel="noopener" target="_blank">
+                Astro
+            </a>
+            & Theme.
+            <a href="https://github.com/theme-shoka-x/astro-theme-shokax" rel="noopener" target="_blank">
+                ShokaX
+            </a>
+        </div>
     </div>
     }
     {  footer.icp?.enable && <span style="display:inline;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">
@@ -35,7 +45,7 @@ const copyrightYear = new Date().getFullYear()
     { footer.icp?.beian && footer.icp.recordCode && <span>
         <br>
         <a target="_blank" href={`https://beian.mps.gov.cn/#/query/webSearch?code=${footer.icp.recordCode}`}>
-            <Image src={basic.statics + basic.statics + footer.icp.icon} style="max-width: 2em;display:inline;" width="20" height="20" alt="备案" />
+            <Image src={footer.icp.icon} style="max-width: 2em;display:inline;" width="20" height="20" alt="备案" />
             { footer.icp.beian }
         </a>
         </span>

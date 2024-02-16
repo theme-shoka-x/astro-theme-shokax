@@ -28,18 +28,10 @@ interface FooterConfig {
   }
 }
 
-interface BasicConfig {
-  statics: string;
-  assets: string;
-  js: string;
-  css: string;
-}
-
 
 const config = yaml.load(fs.readFileSync("src/config.yml", "utf8")) as {
   site: Partial<SiteConfig>
   footer: Partial<FooterConfig>
-  basic: BasicConfig
 }
 
 export const BASE_URL = import.meta.env.BASE_URL.endsWith("/")
@@ -48,4 +40,3 @@ export const BASE_URL = import.meta.env.BASE_URL.endsWith("/")
 
 export const site = config.site
 export const footer = config.footer
-export const basic = config.basic
