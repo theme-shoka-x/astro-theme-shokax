@@ -1,5 +1,5 @@
 ---
-import { site } from '@utils/config'
+import { algolia, site, } from '@utils/config'
 import { __ } from '@utils/i18n'
 import ThemeButton from '@components/partials/header/ThemeButton.vue'
 import NavSearch from './partials/header/NavSearch.vue'
@@ -25,9 +25,9 @@ import NavSearch from './partials/header/NavSearch.vue'
             <li class="item theme">
                 <ThemeButton client:load></ThemeButton>
             </li>
-            <li class="item search">
-                <NavSearch client:idle></NavSearch>
-            </li>
+            { algolia.enable && <li class="item search">
+                 <NavSearch client:load></NavSearch>
+            </li> }
         </ul>
     </div>
 </nav>

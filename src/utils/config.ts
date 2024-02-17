@@ -28,10 +28,18 @@ interface FooterConfig {
   }
 }
 
+interface AlgoliaSearchConfig {
+  enable: boolean
+  indexName: string
+  appId: string
+  apiKey: string
+}
+
 
 const config = yaml.load(fs.readFileSync("src/config.yml", "utf8")) as {
   site: Partial<SiteConfig>
   footer: Partial<FooterConfig>
+  algolia: AlgoliaSearchConfig
 }
 
 export const BASE_URL = import.meta.env.BASE_URL.endsWith("/")
@@ -40,3 +48,4 @@ export const BASE_URL = import.meta.env.BASE_URL.endsWith("/")
 
 export const site = config.site
 export const footer = config.footer
+export const algolia = config.algolia

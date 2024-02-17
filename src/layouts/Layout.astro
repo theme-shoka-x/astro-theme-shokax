@@ -3,10 +3,12 @@ import Footer from '@components/Footer.astro';
 import Header from '@components/Header.astro';
 import BaseHead from '@components/partials/BaseHead.astro';
 import Loading from '@components/partials/Loading.astro';
-import { site } from '@utils/config';
+import { algolia, site } from '@utils/config';
 import { ViewTransitions } from 'astro:transitions';
 import { cover } from '@utils/cover'
 import { Image } from 'astro:assets';
+import SiteSearch from '@components/thirdparty/SiteSearch.vue';
+import { __ } from '@utils/i18n';
 
 interface Props {
 	title: string;
@@ -94,6 +96,9 @@ const {
 				</div>
 			</footer>
 		</div>
+	{ algolia.enable && <SiteSearch client:idle appID={algolia.appId} apiKey={algolia.apiKey} indexName={algolia.indexName} 
+							url={site.url as string} placeholder={__('search.placeholder')} empty={__('search.empty')} stats={__('search.stats')}>
+							</SiteSearch> }
 	</body>
 </html>
 
