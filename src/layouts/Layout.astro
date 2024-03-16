@@ -1,324 +1,353 @@
 ---
-import Footer from '@components/Footer.astro';
-import Header from '@components/Header.astro';
-import BaseHead from '@components/partials/BaseHead.astro';
-import Loading from '@components/partials/Loading.vue';
-import { algolia, site } from '@utils/config';
-import { ViewTransitions } from 'astro:transitions';
+import Footer from '@components/Footer.astro'
+import Header from '@components/Header.astro'
+import BaseHead from '@components/partials/BaseHead.astro'
+import Loading from '@components/partials/Loading.vue'
+import { algolia, loader, site } from '@utils/config'
+import { ViewTransitions } from 'astro:transitions'
 import { cover } from '@utils/cover'
-import { Image } from 'astro:assets';
-import SiteSearch from '@components/thirdparty/SiteSearch.vue';
-import { __ } from '@utils/i18n';
-import { loader } from "@utils/config";
+import { Image } from 'astro:assets'
+import SiteSearch from '@components/thirdparty/SiteSearch.vue'
+import { __ } from '@utils/i18n'
 
 interface Props {
-	title: string;
-	lang: string;
-	desc: string;
-	keywords?: string[];
+  title: string
+  lang: string
+  desc: string
+  keywords?: string[]
 }
 
-const {
-	title,
-	lang,
-	desc,
-	keywords
-} = Astro.props;
+const { title, lang, desc, keywords } = Astro.props;
 ---
 
 <!doctype html>
 <html lang={lang}>
-	<head>
-		<BaseHead title={title} description={desc} keywords={keywords}></BaseHead>
-		<ViewTransitions />
-		<slot name="head"></slot>
-	</head>
-	<body itemscope itemtype="http://schema.org/WebPage">
-		<Loading start={loader.start} client:only></Loading>
-		<div id="container">
-			<header id="header" itemscope itemtype="http://schema.org/WPHeader">
-				<div class="inner">
-					<div id="brand">
-						<div class="pjax">
-							<slot name="header">
-								<a href={site.url ? site.url : '/'} class="logo" rel="start">
-									{ site.alternate && <p class="artboard">
-										{ site.alternate }
-									</p>}
-									<h1 itemprop="name headline" class="title">
-										{ title }
-									</h1>
-									{site.subtitle && <p class="meta" itemprop="description">
-										{ `= ${site.subtitle} =` }
-									</p>}
-								</a>
-							</slot>
-						</div>
-					</div>
-					<Header></Header>
-				</div>
-				<div class="imgs" class="pjax">
-					{ cover.fixedCover && <Image src={cover.fixedCover} alt="header img" width={1280} height={800}/> }
-					{ !cover.fixedCover && { /* TODO */ }}
-				</div>
-			</header>
-			<div class="waves">
-				<svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-					<defs>
-						<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-					</defs>
-					<g class="parallax">
-						<use xlink:href="#gentle-wave" x="48" y="0" />
-						<use xlink:href="#gentle-wave" x="48" y="3" />
-						<use xlink:href="#gentle-wave" x="48" y="5" />
-						<use xlink:href="#gentle-wave" x="48" y="7" />
-					</g>
-				</svg>
-			</div>
-			<main>
-				<div class="inner">
-					<div id="main" class="pjax">
-						<slot name="content" />
-					</div>
-					<div id="sidebar">
-						<slot name="sidebar">
-							<!-- TODO -->
-						</slot>
-					</div>
-					<div class="dimmer"></div>
-				</div>
-			</main>
-			<footer id="footer">
-				<div class="inner">
-					<div class="widgets">
-						<!-- TODO -->
-					</div>
-					<Footer></Footer>
-				</div>
-			</footer>
-		</div>
-	{ algolia.enable && <SiteSearch client:idle appID={algolia.appId} apiKey={algolia.apiKey} indexName={algolia.indexName} 
-							url={site.url as string} placeholder={__('search.placeholder')} empty={__('search.empty')} stats={__('search.stats')}>
-							</SiteSearch> }
-	</body>
-</html>
-
-<style is:global lang="stylus">
+  <head>
+    <BaseHead title={title} description={desc} keywords={keywords} />
+    <ViewTransitions />
+    <slot name="head" />
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage">
+    <Loading start={loader.start} client:only />
+    <div id="container">
+      <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="inner">
+          <div id="brand">
+            <div class="pjax">
+              <slot name="header">
+                <a href={site.url ? site.url : '/'} class="logo" rel="start">
+                  {site.alternate && <p class="artboard">{site.alternate}</p>}
+                  <h1 itemprop="name headline" class="title">
+                    {title}
+                  </h1>
+                  {
+                    site.subtitle && (
+                      <p class="meta" itemprop="description">
+                        {`= ${site.subtitle} =`}
+                      </p>
+                    )
+                  }
+                </a>
+              </slot>
+            </div>
+          </div>
+          <Header />
+        </div>
+        <div class="imgs" class="pjax">
+          {
+            cover.fixedCover && (
+              <Image
+                src={cover.fixedCover}
+                alt="header img"
+                width={1280}
+                height={800}
+              />
+            )
+          }
+          {
+            !cover.fixedCover
+            && {
+                /* TODO */
+              }
+          }
+        </div>
+      </header>
+      <div class="waves">
+        <svg
+          class="waves"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 24 150 28"
+          preserveAspectRatio="none"
+          shape-rendering="auto"
+        >
+          <defs>
+            <path
+              id="gentle-wave"
+              d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+            ></path>
+          </defs>
+          <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0"></use>
+            <use xlink:href="#gentle-wave" x="48" y="3"></use>
+            <use xlink:href="#gentle-wave" x="48" y="5"></use>
+            <use xlink:href="#gentle-wave" x="48" y="7"></use>
+          </g>
+        </svg>
+      </div>
+      <main>
+        <div class="inner">
+          <div id="main" class="pjax">
+            <slot name="content" />
+          </div>
+          <div id="sidebar">
+            <slot name="sidebar">
+              <!-- TODO -->
+            </slot>
+          </div>
+          <div class="dimmer"></div>
+        </div>
+      </main>
+      <footer id="footer">
+        <div class="inner">
+          <div class="widgets">
+            <!-- TODO -->
+          </div>
+          <Footer />
+        </div>
+      </footer>
+    </div>
+    {
+      algolia.enable && (
+        <SiteSearch
+          client:idle
+          appID={algolia.appId}
+          apiKey={algolia.apiKey}
+          indexName={algolia.indexName}
+          url={site.url as string}
+          placeholder={__('search.placeholder')}
+          empty={__('search.empty')}
+          stats={__('search.stats')}
+        ></SiteSearch>
+      )
+    }
+  </body><style is:global lang="stylus">
 :root {
-	--grey-0: #fff;
-	--grey-1: #fdfdfd;
-	--grey-2: #f7f7f7;
-	--grey-3: #eff2f3;
-	--grey-4: #ccc;
-	--grey-5: #999;
-	--grey-6: #666;
-	--grey-7: #333;
-	--grey-8: #222;
-	--grey-9: #000;
+  --grey-0: #fff;
+  --grey-1: #fdfdfd;
+  --grey-2: #f7f7f7;
+  --grey-3: #eff2f3;
+  --grey-4: #ccc;
+  --grey-5: #999;
+  --grey-6: #666;
+  --grey-7: #333;
+  --grey-8: #222;
+  --grey-9: #000;
 
-	--grey-1-a0: rgba(253, 253, 253, 0);
-	--grey-1-a7: rgba(253, 253, 253, 0.7);
-	--grey-1-a5: rgba(253, 253, 253, 0.5);
-	--grey-1-a3: rgba(253, 253, 253, 0.3);
-	--grey-9-a1: rgba(0, 0, 0, 0.1);
-	--grey-9-a5: rgba(0, 0, 0, 0.5);
-	--grey-2-a0: rgba(247, 247, 247, 0);
+  --grey-1-a0: rgba(253, 253, 253, 0);
+  --grey-1-a7: rgba(253, 253, 253, 0.7);
+  --grey-1-a5: rgba(253, 253, 253, 0.5);
+  --grey-1-a3: rgba(253, 253, 253, 0.3);
+  --grey-9-a1: rgba(0, 0, 0, 0.1);
+  --grey-9-a5: rgba(0, 0, 0, 0.5);
+  --grey-2-a0: rgba(247, 247, 247, 0);
 
-	--color-pink-light-old: #ffe6fa;
-	--color-pink-light: rgba(255, 230, 250, 0.72);
-	--color-cyan-light-old: #e3fdf5;
-	--color-cyan-light: rgba(227, 253, 245, 0.72);
+  --color-pink-light-old: #ffe6fa;
+  --color-pink-light: rgba(255, 230, 250, 0.72);
+  --color-cyan-light-old: #e3fdf5;
+  --color-cyan-light: rgba(227, 253, 245, 0.72);
 
-	--color-red: #e9546b;
-	--color-pink: #ed6ea0;
-	--color-orange: #ec8c69;
-	--color-yellow: #eab700;
-	--color-green: #0a7426;
-	--color-aqua: #3e999f;
-	--color-blue: #38a1db;
-	--color-purple: #9d5b8b;
-	--color-grey: #869194;
+  --color-red: #e9546b;
+  --color-pink: #ed6ea0;
+  --color-orange: #ec8c69;
+  --color-yellow: #eab700;
+  --color-green: #0a7426;
+  --color-aqua: #3e999f;
+  --color-blue: #38a1db;
+  --color-purple: #9d5b8b;
+  --color-grey: #869194;
 
-	--color-red-a1: rgba(233, 84, 107, 0.1);
-	--color-red-a3: rgba(233, 84, 107, 0.3);
-	--color-pink-a3: rgba(237, 110, 160, 0.3);
-	--color-pink-light-a3: rgba(255, 230, 250, 0.3);
-	--color-pink-light-a5: rgba(255, 230, 250, 0.5);
-	--color-pink-light-a7: rgba(255, 230, 250, 0.7);
+  --color-red-a1: rgba(233, 84, 107, 0.1);
+  --color-red-a3: rgba(233, 84, 107, 0.3);
+  --color-pink-a3: rgba(237, 110, 160, 0.3);
+  --color-pink-light-a3: rgba(255, 230, 250, 0.3);
+  --color-pink-light-a5: rgba(255, 230, 250, 0.5);
+  --color-pink-light-a7: rgba(255, 230, 250, 0.7);
 
-	--body-bg-shadow: var(--grey-2);
-	--box-bg-shadow: var(--grey-9-a1);
-	--text-color: var(--grey-7);
-	--header-text-color: var(--grey-0);
-	--primary-color: var(--color-red);
+  --body-bg-shadow: var(--grey-2);
+  --box-bg-shadow: var(--grey-9-a1);
+  --text-color: var(--grey-7);
+  --header-text-color: var(--grey-0);
+  --primary-color: var(--color-red);
 
-	--nav-bg: linear-gradient(-225deg, var(--color-cyan-light) 0, var(--color-pink-light) 100%);
+  --nav-bg: linear-gradient(-225deg, var(--color-cyan-light) 0, var(--color-pink-light) 100%);
 }
 
 .primary {
-	--note-border: #cda0c7;
-	--note-bg: #fdf8ff;
-	--note-text: #8a51c0;
-	--note-hover: #935aca;
+  --note-border: #cda0c7;
+  --note-bg: #fdf8ff;
+  --note-text: #8a51c0;
+  --note-hover: #935aca;
 }
 
 .info {
-	--note-border: #8fa4dc;
-	--note-bg: #f1f9ff;
-	--note-text: #1d4974;
-	--note-hover: #1d5fa0;
+  --note-border: #8fa4dc;
+  --note-bg: #f1f9ff;
+  --note-text: #1d4974;
+  --note-hover: #1d5fa0;
 }
 
 .success {
-	--note-border: #a3c293;
-	--note-bg: #fcfff5;
-	--note-text: #2c662d;
-	--note-hover: #3b883c;
+  --note-border: #a3c293;
+  --note-bg: #fcfff5;
+  --note-text: #2c662d;
+  --note-hover: #3b883c;
 }
 
 .warning {
-	--note-border: #c9ba9b;
-	--note-bg: #fffbeb;
-	--note-text: #947600;
-	--note-hover: #ccb045;
+  --note-border: #c9ba9b;
+  --note-bg: #fffbeb;
+  --note-text: #947600;
+  --note-hover: #ccb045;
 }
 
 .danger {
-	--note-border: #f4b3c1;
-	--note-bg: #fff2f5;
-	--note-text: #cc0f35;
-	--note-hover: #f14668;
+  --note-border: #f4b3c1;
+  --note-bg: #fff2f5;
+  --note-text: #cc0f35;
+  --note-hover: #f14668;
 }
 
 [data-theme="dark"] {
-	&:root {
-		--grey-0: #222;
-		--grey-1: #21252b;
-		--grey-2: #363636;
-		--grey-3: #444;
-		--grey-4: #666;
-		--grey-5: #aaa;
-		--grey-6: #ccc;
-		--grey-7: #ddd;
-		--grey-8: #eee;
-		--grey-9: #f7f7f7;
+  &:root {
+    --grey-0: #222;
+    --grey-1: #21252b;
+    --grey-2: #363636;
+    --grey-3: #444;
+    --grey-4: #666;
+    --grey-5: #aaa;
+    --grey-6: #ccc;
+    --grey-7: #ddd;
+    --grey-8: #eee;
+    --grey-9: #f7f7f7;
 
-		--grey-1-a7: rgba(34, 34, 34, 0.7);
-		--grey-1-a5: rgba(34, 34, 34, 0.5);
-		--grey-1-a3: rgba(34, 34, 34, 0.3);
-		--grey-1-a0: rgba(34, 34, 34, 0);
-		--grey-9-a1: rgba(51, 51, 51, 0.1);
-		--grey-2-a0: rgba(54, 54, 54, 0);
+    --grey-1-a7: rgba(34, 34, 34, 0.7);
+    --grey-1-a5: rgba(34, 34, 34, 0.5);
+    --grey-1-a3: rgba(34, 34, 34, 0.3);
+    --grey-1-a0: rgba(34, 34, 34, 0);
+    --grey-9-a1: rgba(51, 51, 51, 0.1);
+    --grey-2-a0: rgba(54, 54, 54, 0);
 
-		--color-pink-light: rgba(255, 230, 250, 0.8);
-		--color-cyan-light: rgba(227, 253, 245, 0.8);
+    --color-pink-light: rgba(255, 230, 250, 0.8);
+    --color-cyan-light: rgba(227, 253, 245, 0.8);
 
-		--color-red: rgba(233, 84, 107, 0.9);
-		--color-pink: rgba(237, 110, 160, 0.8);
-		--color-orange: rgba(236, 140, 105, 0.8);
-		--color-yellow: rgba(234, 183, 0, 0.5);
-		--color-green: rgba(49, 103, 69, 0.5);
-		--color-aqua: rgba(62, 153, 159, 0.5);
-		--color-blue: rgba(56, 161, 219, 0.5);
-		--color-purple: rgba(157, 91, 139, 0.5);
-		--color-grey: rgba(134, 145, 148, 0.5);
+    --color-red: rgba(233, 84, 107, 0.9);
+    --color-pink: rgba(237, 110, 160, 0.8);
+    --color-orange: rgba(236, 140, 105, 0.8);
+    --color-yellow: rgba(234, 183, 0, 0.5);
+    --color-green: rgba(49, 103, 69, 0.5);
+    --color-aqua: rgba(62, 153, 159, 0.5);
+    --color-blue: rgba(56, 161, 219, 0.5);
+    --color-purple: rgba(157, 91, 139, 0.5);
+    --color-grey: rgba(134, 145, 148, 0.5);
 
-		--body-bg-shadow: #000;
-		--box-bg-shadow: #000;
-		--text-color: var(--grey-5);
-		--header-text-color: var(--grey-9);
-	}
+    --body-bg-shadow: #000;
+    --box-bg-shadow: #000;
+    --text-color: var(--grey-5);
+    --header-text-color: var(--grey-9);
+  }
 
-	.primary {
-		--note-border: rgba(205, 160, 199, 0.8);
-		--note-bg: rgba(253, 248, 255, 0.8);
-		--note-text: rgba(138, 81, 192, 0.8);
-		--note-hover: rgba(147, 90, 202, 0.8);
-	}
+  .primary {
+    --note-border: rgba(205, 160, 199, 0.8);
+    --note-bg: rgba(253, 248, 255, 0.8);
+    --note-text: rgba(138, 81, 192, 0.8);
+    --note-hover: rgba(147, 90, 202, 0.8);
+  }
 
-	.info {
-		--note-border: rgba(143, 164, 220, 0.8);
-		--note-bg: rgba(241, 249, 255, 0.8);
-		--note-text: rgba(29, 73, 116, 0.8);
-		--note-hover: rgba(29, 95, 160, 0.8);
-	}
+  .info {
+    --note-border: rgba(143, 164, 220, 0.8);
+    --note-bg: rgba(241, 249, 255, 0.8);
+    --note-text: rgba(29, 73, 116, 0.8);
+    --note-hover: rgba(29, 95, 160, 0.8);
+  }
 
-	.success {
-		--note-border: rgba(163, 194, 147, 0.8);
-		--note-bg: rgba(252, 255, 245, 0.8);
-		--note-text: rgba(44, 102, 45, 0.8);
-		--note-hover: rgba(59, 136, 60, 0.8);
-	}
+  .success {
+    --note-border: rgba(163, 194, 147, 0.8);
+    --note-bg: rgba(252, 255, 245, 0.8);
+    --note-text: rgba(44, 102, 45, 0.8);
+    --note-hover: rgba(59, 136, 60, 0.8);
+  }
 
-	.warning {
-		--note-border: rgba(201, 186, 155, 0.8);
-		--note-bg: rgba(255, 251, 235, 0.8);
-		--note-text: rgba(148, 118, 0, 0.8);
-		--note-hover: rgba(204, 176, 69, 0.8);
-	}
+  .warning {
+    --note-border: rgba(201, 186, 155, 0.8);
+    --note-bg: rgba(255, 251, 235, 0.8);
+    --note-text: rgba(148, 118, 0, 0.8);
+    --note-hover: rgba(204, 176, 69, 0.8);
+  }
 
-	.danger {
-		--note-border: rgba(244, 179, 193, 0.8);
-		--note-bg: rgba(255, 242, 245, 0.8);
-		--note-text: rgba(204, 15, 53, 0.8);
-		--note-hover: rgba(241, 70, 104, 0.8);
-	}
+  .danger {
+    --note-border: rgba(244, 179, 193, 0.8);
+    --note-bg: rgba(255, 242, 245, 0.8);
+    --note-text: rgba(204, 15, 53, 0.8);
+    --note-hover: rgba(241, 70, 104, 0.8);
+  }
 
-	.sidebar .tab li,
-	.overview .menu .item,
-	.index.wrap .card .message .btn,
-	img,
-	[data-background-image] {
-		the-transition();
-		opacity: 0.75;
-	}
+  .sidebar .tab li,
+  .overview .menu .item,
+  .index.wrap .card .message .btn,
+  img,
+  [data-background-image] {
+    the-transition();
+    opacity: 0.75;
+  }
 
-	.sidebar .tab li:hover,
-	.overview .menu .item:hover,
-	.index.wrap .card .message .btn:hover,
-	img:hover,
-	[data-background-image]:hover {
-		opacity: 0.9;
-	}
+  .sidebar .tab li:hover,
+  .overview .menu .item:hover,
+  .index.wrap .card .message .btn:hover,
+  img:hover,
+  [data-background-image]:hover {
+    opacity: 0.9;
+  }
 
-	#imgs::before {
-		background-color: rgba(0, 0, 0, 0.5);
-	}
+  #imgs::before {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 }
 
 .red {
-	color: var(--color-red);
+  color: var(--color-red);
 }
 
 .pink {
-	color: var(--color-pink);
+  color: var(--color-pink);
 }
 
 .orange {
-	color: var(--color-orange);
+  color: var(--color-orange);
 }
 
 .yellow {
-	color: var(--color-yellow);
+  color: var(--color-yellow);
 }
 
 .green {
-	color: var(--color-green);
+  color: var(--color-green);
 }
 
 .aqua {
-	color: var(--color-aqua);
+  color: var(--color-aqua);
 }
 
 .blue {
-	color: var(--color-blue);
+  color: var(--color-blue);
 }
 
 .purple {
-	color: var(--color-purple);
+  color: var(--color-purple);
 }
 
 .grey {
-	color: var(--color-grey);
+  color: var(--color-grey);
 }
 </style>
+</html>

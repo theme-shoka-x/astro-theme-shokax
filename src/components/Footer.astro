@@ -3,52 +3,88 @@ import Image from 'astro/components/Image.astro'
 import { footer, site } from '@utils/config'
 import { __ } from '@utils/i18n'
 
-const copyrightYear = new Date().getFullYear()
+const copyrightYear = new Date().getFullYear();
 ---
 
 <div class="status">
-    <div id="copyright">
-        { footer.since && footer.since !== copyrightYear &&
-          `&copy; ${footer.since} -`
-        }
-        <span itemprop="copyrightYear">
-            { copyrightYear }
-        </span>
-        <span class="with-love">
-            <i class={`ic i-${ footer.icon?.name }`}></i>
-        </span>
-        <span class="author" itemprop="copyrightHolder">
-            { `${site.author} @ ${ site.alternate?site.alternate:site.title}` }
-        </span>
-    </div>
-    { footer.count && <div class="count">
-        { /* TODO */}
-    </div>}
-    { footer.powered && <div class="powered-by">
+  <div id="copyright">
+    {
+      footer.since
+      && footer.since !== copyrightYear
+      && `&copy; ${footer.since} -`
+    }
+    <span itemprop="copyrightYear">
+      {copyrightYear}
+    </span>
+    <span class="with-love">
+      <i class={`ic i-${footer.icon?.name}`}></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">
+      {`${site.author} @ ${site.alternate ? site.alternate : site.title}`}
+    </span>
+  </div>
+  {footer.count && <div class="count">{/* TODO */}</div>}
+  {
+    footer.powered && (
+      <div class="powered-by">
         <div class="powered-by">
-            { __('footer.powered') }
-            <a href="https://astro.build" rel="noopener" target="_blank">
-                Astro
-            </a>
-            & Theme.
-            <a href="https://github.com/theme-shoka-x/astro-theme-shokax" rel="noopener" target="_blank">
-                ShokaX
-            </a>
+          {__('footer.powered')}
+          <a href="https://astro.build" rel="noopener" target="_blank">
+            Astro
+          </a>
+          & Theme.
+          <a
+            href="https://github.com/theme-shoka-x/astro-theme-shokax"
+            rel="noopener"
+            target="_blank"
+          >
+            ShokaX
+          </a>
         </div>
-    </div>
-    }
-    {  footer.icp?.enable && <span style="display:inline;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">
-        <a href="https://beian.miit.gov.cn">
-            { footer.icp.icpnumber }
-        </a>
-    }
-    { footer.icp?.beian && footer.icp.recordCode && <span>
-        <br>
-        <a target="_blank" href={`https://beian.mps.gov.cn/#/query/webSearch?code=${footer.icp.recordCode}`}>
-            <Image src={footer.icp.icon} style="max-width: 2em;display:inline;" width="20" height="20" alt="备案" />
-            { footer.icp.beian }
-        </a>
-        </span>
-    }
-
+      </div>
+    )
+  }
+  {
+    footer.icp?.enable && (
+      <span style="display:inline;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">
+        <a href="https://beian.miit.gov.cn">{footer.icp.icpnumber}</a>
+        {footer.icp?.beian && footer.icp.recordCode && (
+          <span>
+            <br />
+            <a
+              target="_blank"
+              href={`https://beian.mps.gov.cn/#/query/webSearch?code=${footer.icp.recordCode}`}
+            >
+              <Image
+                src={footer.icp.icon}
+                style="max-width: 2em;display:inline;"
+                width="20"
+                height="20"
+                alt="备案"
+              />
+              {footer.icp.beian}
+            </a>
+          </span>
+        )}
+      </span>
+    )
+  }
 </div>
+
+<style lang="stylus" define:vars={{ color: footer?.icon?.color }}>
+
+  .status {
+    width: 100%;
+    text-align: center;
+  }
+
+  .with-love {
+    color: var(--color);
+    display: inline-block;
+    margin: 0 .3125rem 0 .125rem;
+  }
+
+  .powered-by, .theme-info {
+    display: inline-block;
+  }
+</style>

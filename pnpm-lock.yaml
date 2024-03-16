@@ -29,6 +29,9 @@ dependencies:
   astro:
     specifier: ^4.4.0
     version: 4.5.5(@types/node@20.11.28)(stylus@0.62.0)(typescript@5.4.2)
+  hexo-i18n:
+    specifier: ^2.0.0
+    version: 2.0.0
   instantsearch.js:
     specifier: ^4.66.0
     version: 4.66.0(algoliasearch@4.22.1)
@@ -3453,6 +3456,13 @@ packages:
       space-separated-tokens: 2.0.2
     dev: false
 
+  /hexo-i18n@2.0.0:
+    resolution: {integrity: sha512-dkUXecEtChaQMdTHN4WR13c8GwKqjbSOZPJS9qDqV6Ebnb77Wa/nQzWFckhP0dCps3a9lUQBd8hYGOMbOosiQQ==}
+    engines: {node: '>=14'}
+    dependencies:
+      sprintf-js: 1.1.3
+    dev: false
+
   /hogan.js@3.0.2:
     resolution: {integrity: sha512-RqGs4wavGYJWE07t35JQccByczmNUXQT0E12ZYV1VKYu5UiAU9lsos/yBAcf840+zrUQQxgVduCR5/B8nNtibg==}
     hasBin: true
@@ -5207,6 +5217,10 @@ packages:
 
   /sprintf-js@1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
+    dev: false
+
+  /sprintf-js@1.1.3:
+    resolution: {integrity: sha512-Oo+0REFV59/rz3gfJNKQiBlwfHaSESl1pcGyABQsnnIfWOFt6JNj5gCog2U6MLZ//IGYD+nA8nI+mTShREReaA==}
     dev: false
 
   /stdin-discarder@0.1.0:

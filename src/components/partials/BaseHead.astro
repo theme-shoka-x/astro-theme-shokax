@@ -1,12 +1,13 @@
 ---
-import { BASE_URL } from "@utils/config";
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+import { BASE_URL } from '@utils/config'
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
 type Props = {
-  title: string;
-  description: string;
-  keywords?: string | string[];
-};
+  title: string
+  description: string
+  keywords?: string | string[]
+}
 
 const {
   title,
@@ -40,7 +41,7 @@ const {
 <meta name="description" content={description} />
 <meta
   name="keywords"
-  content={Array.isArray(keywords) ? keywords.join(",") : keywords}
+  content={Array.isArray(keywords) ? keywords.join(',') : keywords}
 />
 
 <!-- Open Graph / Facebook -->

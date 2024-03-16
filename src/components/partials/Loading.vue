@@ -2,35 +2,35 @@
 import { onMounted, ref } from 'vue'
 
 const props = defineProps<{
-  start: boolean;
-}>();
+  start: boolean
+}>()
 
 const displayLoading = ref(props.start)
 
-let time: NodeJS.Timeout;
-let lock = false;
+let time: NodeJS.Timeout
+let lock = false
 
-const show = () => {
+function show() {
   clearTimeout(time)
   document.body.classList.remove('loaded')
   displayLoading.value = true
   lock = false
 }
 
-const vanish = () => {
+function vanish() {
   if (lock)
     return
-  if (props.start) {
+  if (props.start)
     displayLoading.value = false
-  }
+
   document.body.classList.add('loaded')
   lock = true
 }
 
-const hide = (sec?: number) => {
-  if (!props.start) {
+function hide(sec?: number) {
+  if (!props.start)
     sec = -1
-  }
+
   time = setTimeout(vanish, sec || 3000)
 }
 
@@ -40,7 +40,7 @@ onMounted(() => {
 
 defineExpose({
   show,
-  hide
+  hide,
 })
 </script>
 
@@ -241,7 +241,6 @@ head-foot-color()
   .foot
     animation: 2.74s linear infinite foot
 
-
   &:hover
     animation-play-state: paused;
     .body, .foot
@@ -302,6 +301,4 @@ head-foot-color()
   70% { transform: rotate(-165deg); }
   100% { transform: rotate(-10deg); }
 }
-
-
 </style>

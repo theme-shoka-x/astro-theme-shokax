@@ -60,30 +60,30 @@ post:
     author: 本文作者
     link: 本文链接
     license_title: 版权声明
-    license_content: "本站所有文章除特别声明外，均采用 %s 许可协议。转载请注明出处！"
-    nocopy: "<span class=\"red\">本页内容禁止转载！</span>"
+    license_content: '本站所有文章除特别声明外，均采用 %s 许可协议。转载请注明出处！'
+    nocopy: '<span class="red">本页内容禁止转载！</span>'
 
 footer:
-  powered: "基于 %s"
+  powered: 基于
   total_views: 总访问量
   total_visitors: 总访客量
 
 counter:
   index:
-    post: "%d 篇文章"
-    category:  "%d 个子项，"
+    post: '%d 篇文章'
+    category: '%d 个子项，'
   tag_cloud:
     zero: 暂无标签
     one: 目前共计 1 个标签
-    other: "目前共计 %d 个标签"
+    other: '目前共计 %d 个标签'
   categories:
     zero: 暂无分类
     one: 目前共计 1 个分类
-    other: "目前共计 %d 个分类"
+    other: '目前共计 %d 个分类'
   archive_posts:
     zero: 暂无文章。
     one: 目前共计 1 篇文章。
-    other: "目前共计 %d 篇文章。"
+    other: '目前共计 %d 篇文章。'
 
 state:
   posts: 文章
@@ -92,8 +92,8 @@ state:
 
 search:
   placeholder: 文章搜索
-  empty: "关于 「 ${query} 」，什么也没搜到"
-  stats: "${time} ms 内找到 ${hits} 条结果"
+  empty: '关于 「 ${query} 」，什么也没搜到'
+  stats: '${time} ms 内找到 ${hits} 条结果'
 
 cheers:
   um: 嗯..
@@ -106,9 +106,9 @@ cheers:
 keep_on: 继续努力。
 
 symbol:
-  comma: "，"
-  period: "。"
-  colon: "："
+  comma: ，
+  period: 。
+  colon: ：
   year: 年
   month: 月
 
@@ -138,8 +138,8 @@ symbols_count_time:
   view: 次
 
 tips:
-  copyright: "复制成功，转载请遵守 %s 协议。"
-  nocopy: "复制失败，本页内容禁止转载！"
+  copyright: '复制成功，转载请遵守 %s 协议。'
+  nocopy: 复制失败，本页内容禁止转载！
 
 quiz:
   choice: 单选题
@@ -150,4 +150,4 @@ quiz:
   mistake: 错题备注
 
 outime:
-  template: "<div class=\"note warning\"><p><span class=\"label warning\">文章时效性提示</span><br>这是一篇发布于 {{publish}} 天前，最后一次更新在 {{updated}} 天前的文章，部分信息可能已经发生改变，请注意甄别。</p></div>"
+  template: '<div class="note warning"><p><span class="label warning">文章时效性提示</span><br>这是一篇发布于 {{publish}} 天前，最后一次更新在 {{updated}} 天前的文章，部分信息可能已经发生改变，请注意甄别。</p></div>'

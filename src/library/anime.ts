@@ -14,7 +14,7 @@ export function transition(target: HTMLElement, type: number | string | Function
       break
     case 'bounceUpIn':
       animation = {
-        begin(anim) {
+        begin(_anim) {
           target.style.display = 'block'
         },
         translateY: [
@@ -29,7 +29,7 @@ export function transition(target: HTMLElement, type: number | string | Function
       break
     case 'shrinkIn':
       animation = {
-        begin(anim) {
+        begin(_anim) {
           target.style.display = 'block'
         },
         scale: [
@@ -42,7 +42,7 @@ export function transition(target: HTMLElement, type: number | string | Function
       break
     case 'slideRightIn':
       animation = {
-        begin(anim) {
+        begin(_anim) {
           target.style.display = 'block'
         },
         translateX: ['100%', '0%'],

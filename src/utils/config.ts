@@ -15,6 +15,7 @@ interface SiteConfig {
 interface FooterConfig {
   since: number
   icon: {
+    color: string
     name: string
   }
   count: boolean

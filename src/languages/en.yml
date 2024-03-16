@@ -60,30 +60,30 @@ post:
     author: Post author
     link: Post link
     license_title: Copyright Notice
-    license_content: "All articles in this blog are licensed under %s unless stating additionally."
-    nocopy: "<span class=\"red\">This page is prohibited reprint.</span>"
+    license_content: 'All articles in this blog are licensed under %s unless stating additionally.'
+    nocopy: '<span class="red">This page is prohibited reprint.</span>'
 
 footer:
-  powered: "Powered by %s"
+  powered: Powered by
   total_views: Total Views
   total_visitors: Total Visitors
 
 counter:
   index:
-    post: "%d posts in total"
-    category:  "%d subcategories in total, "
+    post: '%d posts in total'
+    category: '%d subcategories in total, '
   tag_cloud:
     zero: No tags
     one: 1 tag in total
-    other: "%d tags in total"
+    other: '%d tags in total'
   categories:
     zero: No categories
     one: 1 category in total
-    other: "%d categories in total"
+    other: '%d categories in total'
   archive_posts:
     zero: No posts.
     one: 1 post.
-    other: "%d posts in total."
+    other: '%d posts in total.'
 
 state:
   posts: posts
@@ -92,8 +92,8 @@ state:
 
 search:
   placeholder: Search for Posts
-  empty: "We didn't find any results for the search: ${query}"
-  stats: "${hits} results found in ${time} ms"
+  empty: 'We didn''t find any results for the search: ${query}'
+  stats: '${hits} results found in ${time} ms'
 
 cheers:
   um: Um..
@@ -106,11 +106,11 @@ cheers:
 keep_on: Keep on posting.
 
 symbol:
-  comma: ", "
-  period: ". "
-  colon: ": "
-  year: "Y"
-  month: "M"
+  comma: ', '
+  period: '. '
+  colon: ': '
+  year: Y
+  month: M
 
 reward:
   donate: Donate
@@ -138,8 +138,8 @@ symbols_count_time:
   view: times
 
 tips:
-  copyright: "Copied to clipboard successfully! <br> All articles in this blog are licensed under %s."
-  nocopy: "Copied to clipboard failed! This page is prohibited reprint."
+  copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under %s.'
+  nocopy: Copied to clipboard failed! This page is prohibited reprint.
 
 quiz:
   choice: Multiple Choice
@@ -150,4 +150,4 @@ quiz:
   mistake: Wrong Answer
 
 outime:
-  template: "<div class=\"note warning\"><p><span class=\"label warning\">Article Timeliness Alert</span><br>This is an article published {{publish}} days ago and last updated {{updated}} days ago. Some information may have changed, so please be careful to screen it.</p></div>"
+  template: '<div class="note warning"><p><span class="label warning">Article Timeliness Alert</span><br>This is an article published {{publish}} days ago and last updated {{updated}} days ago. Some information may have changed, so please be careful to screen it.</p></div>'

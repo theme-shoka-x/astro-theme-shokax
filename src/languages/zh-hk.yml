@@ -60,30 +60,30 @@ post:
     author: 博主
     link: 文章連結
     license_title: 版權聲明
-    license_content: "本網誌所有文章除特別聲明外，均採用 %s 許可協議。轉載請註明出處！"
-    nocopy: "<span class=\"red\">本頁內容禁止轉載！</span>"
+    license_content: '本網誌所有文章除特別聲明外，均採用 %s 許可協議。轉載請註明出處！'
+    nocopy: '<span class="red">本頁內容禁止轉載！</span>'
 
 footer:
-  powered: "基於 %s"
+  powered: 基於
   total_views: 總瀏覽次數
   total_visitors: 訪客總數
 
 counter:
   index:
-    post: "%d 篇文章"
-    category:  "%d 個子項，"
+    post: '%d 篇文章'
+    category: '%d 個子項，'
   tag_cloud:
     zero: 暫無標籤
     one: 目前共有 1 個標籤
-    other: "目前共有 %d 個標籤"
+    other: '目前共有 %d 個標籤'
   categories:
     zero: 暫無分類
     one: 目前共有 1 個分類
-    other: "目前共有 %d 個分類"
+    other: '目前共有 %d 個分類'
   archive_posts:
     zero: 暫無文章。
     one: 目前共有 1 篇文章。
-    other: "目前共有 %d 篇文章。"
+    other: '目前共有 %d 篇文章。'
 
 state:
   posts: 文章
@@ -92,8 +92,8 @@ state:
 
 search:
   placeholder: 文章搜索
-  empty: "關於 「 ${query} 」 ，什麼也沒搜到"
-  stats: "${time} ms 內找到 ${hits} 條結果"
+  empty: '關於 「 ${query} 」 ，什麼也沒搜到'
+  stats: '${time} ms 內找到 ${hits} 條結果'
 
 cheers:
   um: 嗯..
@@ -106,9 +106,9 @@ cheers:
 keep_on: 繼續努力。
 
 symbol:
-  comma: "，"
-  period: "。"
-  colon: "："
+  comma: ，
+  period: 。
+  colon: ：
   year: 年
   month: 月
 
@@ -138,8 +138,8 @@ symbols_count_time:
   view: 次
 
 tips:
-  copyright: "複製成功，轉載請遵守 %s 協議。"
-  nocopy: "複製失敗，本頁內容禁止轉載！"
+  copyright: '複製成功，轉載請遵守 %s 協議。'
+  nocopy: 複製失敗，本頁內容禁止轉載！
 
 quiz:
   choice: 單選題
@@ -150,4 +150,4 @@ quiz:
   mistake: 錯題備註
 
 outime:
-  template: "<div class=\"note warning\"><p><span class=\"label warning\">文章時效性提示</span><br>這是一篇發佈於 {{publish}} 天前，最後一次更新在 {{updated}} 天前的文章，部分信息可能已經發生改變，請注意甄別。</p></div>"
+  template: '<div class="note warning"><p><span class="label warning">文章時效性提示</span><br>這是一篇發佈於 {{publish}} 天前，最後一次更新在 {{updated}} 天前的文章，部分信息可能已經發生改變，請注意甄別。</p></div>'

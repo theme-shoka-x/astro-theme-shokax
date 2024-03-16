@@ -60,30 +60,30 @@ post:
     author: 著者
     link: 記事へのリンク
     license_title: 著作権表示
-    license_content: "このブログ内のすべての記事は、特別な記載がない限り %s の下のライセンスで保護されています。"
-    nocopy: "<span class=\"red\">再印刷は禁止されています。</span>"
+    license_content: 'このブログ内のすべての記事は、特別な記載がない限り %s の下のライセンスで保護されています。'
+    nocopy: '<span class="red">再印刷は禁止されています。</span>'
 
 footer:
-  powered: "Powered by %s"
+  powered: Powered by
   total_views: 閲覧合計数
   total_visitors: 合計閲覧者数
 
 counter:
   index:
-    post: "%d 件の記事"
-    category:  "%d サブカテゴリ，"
+    post: '%d 件の記事'
+    category: '%d サブカテゴリ，'
   tag_cloud:
     zero: タグなし
     one: 全 1 タグ
-    other: "全 %d タグ"
+    other: '全 %d タグ'
   categories:
     zero: カテゴリなし
     one: 全 1 カテゴリ
-    other: "全 %d カテゴリ"
+    other: '全 %d カテゴリ'
   archive_posts:
     zero: ポストなし
     one: 全 1 ポスト
-    other: "全 %d ポスト"
+    other: '全 %d ポスト'
 
 state:
   posts: ポスト
@@ -92,8 +92,8 @@ state:
 
 search:
   placeholder: 検索…
-  empty: "「 ${query} 」については何も見つかりませんでした"
-  stats: "${time} ms以内に ${hits} 件の結果が見つかりました"
+  empty: '「 ${query} 」については何も見つかりませんでした'
+  stats: '${time} ms以内に ${hits} 件の結果が見つかりました'
 
 cheers:
   um: うーん
@@ -106,15 +106,15 @@ cheers:
 keep_on: もっと書こう！
 
 symbol:
-  comma: "、"
-  period: "。"
-  colon: "："
+  comma: 、
+  period: 。
+  colon: ：
   year: 年
   month: 月
 
 reward:
   donate: 寄付
-  text: "*~(￣▽￣)~[お茶]を一杯ください"
+  text: '*~(￣▽￣)~[お茶]を一杯ください'
   wechatpay: WeChat 支払う
   alipay: Alipay
   paypal: PayPal
@@ -138,8 +138,8 @@ symbols_count_time:
   view: 回
 
 tips:
-  copyright: "コピーは成功しました。 <br> 再印刷については、 ％s 契約に従ってください。"
-  nocopy: "コピーに失敗しました。 <br> 再印刷は禁止されています。"
+  copyright: コピーは成功しました。 <br> 再印刷については、 ％s 契約に従ってください。
+  nocopy: コピーに失敗しました。 <br> 再印刷は禁止されています。
 
 quiz:
   choice: 選択
@@ -150,4 +150,4 @@ quiz:
   mistake: 間違った答え
 
 outime:
-  template: "<div class=\"note warning\"><p><span class=\"label warning\">記事の適時性の警告</span><br> {{publish}} 日前に公開され、 {{updated}} 日前に最終更新された記事です。 一部情報が変更されている可能性がありますので、ご了承ください。</p></div>"
+  template: '<div class="note warning"><p><span class="label warning">記事の適時性の警告</span><br> {{publish}} 日前に公開され、 {{updated}} 日前に最終更新された記事です。 一部情報が変更されている可能性がありますので、ご了承ください。</p></div>'

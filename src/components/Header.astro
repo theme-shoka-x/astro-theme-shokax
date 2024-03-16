@@ -1,33 +1,37 @@
 ---
-import { algolia, site, } from '@utils/config'
+import { algolia, site } from '@utils/config'
 import { __ } from '@utils/i18n'
 import ThemeButton from '@components/partials/header/ThemeButton.vue'
-import NavSearch from './partials/header/NavSearch.vue'
+import NavSearch from './partials/header/NavSearch.vue';
 ---
 
 <nav id="nav">
-    <div class="inner">
-        <div class="toggle">
-            <div class="lines" aria-label={__('accessibility.nav_toggle')}>
-                <span class="line"></span>
-                <span class="line"></span>
-                <span class="line"></span>
-            </div>
-        </div>
-        <ul class="menu">
-            <li class="item title">
-                <a href={site.url} rel="start">
-                    { site.alternate || site.title }
-                </a>
-            </li>
-        </ul>
-        <ul class="right" id="rightNav">
-            <li class="item theme">
-                <ThemeButton client:only></ThemeButton>
-            </li>
-            { algolia.enable && <li class="item search">
-                 <NavSearch client:only></NavSearch>
-            </li> }
-        </ul>
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label={__('accessibility.nav_toggle')}>
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
     </div>
+    <ul class="menu">
+      <li class="item title">
+        <a href={site.url} rel="start">
+          {site.alternate || site.title}
+        </a>
+      </li>
+    </ul>
+    <ul class="right" id="rightNav">
+      <li class="item theme">
+        <ThemeButton client:only />
+      </li>
+      {
+        algolia.enable && (
+          <li class="item search">
+            <NavSearch client:only />
+          </li>
+        )
+      }
+    </ul>
+  </div>
 </nav>
