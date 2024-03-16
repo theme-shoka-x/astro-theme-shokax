@@ -34,7 +34,7 @@ const {
 		<slot name="head"></slot>
 	</head>
 	<body itemscope itemtype="http://schema.org/WebPage">
-		<Loading start={loader.start}></Loading>
+		<Loading start={loader.start} client:only></Loading>
 		<div id="container">
 			<header id="header" itemscope itemtype="http://schema.org/WPHeader">
 				<div class="inner">

@@ -1,39 +1,52 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-defineProps<{
+
+const props = defineProps<{
   start: boolean;
 }>();
 
-const displayLoading = ref(true)
+const displayLoading = ref(props.start)
 
-const Loader = {
-  timer: setTimeout(() => { }, 0),
-  lock: false,
-  show() {
-    clearTimeout(this.timer)
-    document.body.classList.remove('loaded')
-    displayLoading.value = true
-    Loader.lock = false
-  },
-  hide(sec?: number) {
-    this.timer = setTimeout(this.vanish, sec || 3000)
-  },
-  vanish(): void {
-    if (Loader.lock)
-      return
-    document.body.classList.add('loaded')
-    Loader.lock = true
-  },
+let time: NodeJS.Timeout;
+let lock = false;
+
+const show = () => {
+  clearTimeout(time)
+  document.body.classList.remove('loaded')
+  displayLoading.value = true
+  lock = false
+}
+
+const vanish = () => {
+  if (lock)
+    return
+  if (props.start) {
+    displayLoading.value = false
+  }
+  document.body.classList.add('loaded')
+  lock = true
+}
+
+const hide = (sec?: number) => {
+  if (!props.start) {
+    sec = -1
+  }
+  time = setTimeout(vanish, sec || 3000)
 }
 
 onMounted(() => {
-  Loader.hide(500)
+  hide()
+})
+
+defineExpose({
+  show,
+  hide
 })
 </script>
 
 <template>
   <Transition name="fade">
-    <div v-if="displayLoading" id="loading" @click="Loader.vanish">
+    <div v-if="displayLoading" id="loading" @click="vanish">
       <div class="cat">
         <div class="body" />
         <div class="head">
