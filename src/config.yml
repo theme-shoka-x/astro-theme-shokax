@@ -1,0 +1,37 @@
+site:
+  title: 
+  subtitle: 
+  description: 
+  author: 
+  timezone: 
+  url: 
+  alternate: testName # 站点大标题
+
+footer:
+  # Specify the date when the site was set up. If not defined, current year will be used.
+  since: 2022
+  icon:
+    name: sakura rotate
+    # Change the color of icon, using Hex Code.
+    color: "#ffc0cb"
+  # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
+  count: true
+  powered: true
+  icp: # ICP备案
+    enable: false
+    # 请在登录后从 https://beian.mps.gov.cn/web/business/businessHome/website 下载对应图标
+    icon: "" #网安备案图片
+    icpnumber: "xxx" # ICP备案号
+    beian: "xxx" # 网安备案号
+    recordcode: "xxx" # 网安备案链接中的recordcode参数
+
+
+loader:
+  start: true # 进入页面时显示加载动画
+  switch: false # 切换页面时显示加载动画
+
+algolia:
+  enable: false
+  indexName: 
+  appId: 
+  apiKey: 

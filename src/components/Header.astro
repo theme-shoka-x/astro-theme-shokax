@@ -23,10 +23,10 @@ import NavSearch from './partials/header/NavSearch.vue'
         </ul>
         <ul class="right" id="rightNav">
             <li class="item theme">
-                <ThemeButton client:load></ThemeButton>
+                <ThemeButton client:only></ThemeButton>
             </li>
             { algolia.enable && <li class="item search">
-                 <NavSearch client:load></NavSearch>
+                 <NavSearch client:only></NavSearch>
             </li> }
         </ul>
     </div>

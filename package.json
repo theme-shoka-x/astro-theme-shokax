@@ -18,7 +18,7 @@
     "@typescript-eslint/parser": "^7.0.1",
     "algoliasearch": "^4.22.1",
     "astro": "^4.4.0",
-    "instantsearch.js": "^4.65.0",
+    "instantsearch.js": "^4.66.0",
     "js-yaml": "^4.1.0",
     "stylus": "^0.62.0",
     "theme-shokax-anime": "^0.0.6",
