@@ -3,6 +3,10 @@ import Footer from '@components/Footer.astro'
 import Header from '@components/Header.astro'
 import BaseHead from '@components/partials/BaseHead.astro'
 import Loading from '@components/partials/Loading.vue'
+import Wave from '@components/partials/Wave.astro'
+import BaiduAnalytics from '@components/thirdparty/BaiduAnalytics.astro'
+import Clarity from '@components/thirdparty/Clarity.astro'
+import GoogleAnalytics from '@components/thirdparty/GoogleAnalytics.astro'
 import { algolia, loader, site } from '@utils/config'
 import { ViewTransitions } from 'astro:transitions'
 import { cover } from '@utils/cover'
@@ -24,6 +28,7 @@ const { title, lang, desc, keywords } = Astro.props;
 <html lang={lang}>
 <style is:global lang="stylus">
   @import "../styles/_colors"; 
+  @import "../styles/_common/scaffolding"; 
 </style>
   <head>
     <BaseHead title={title} description={desc} keywords={keywords} />
@@ -75,29 +80,7 @@ const { title, lang, desc, keywords } = Astro.props;
           }
         </div>
       </header>
-      <div class="waves">
-        <svg
-          class="waves"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          viewBox="0 24 150 28"
-          preserveAspectRatio="none"
-          shape-rendering="auto"
-        >
-          <defs>
-            <path
-              id="gentle-wave"
-              d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
-            ></path>
-          </defs>
-          <g class="parallax">
-            <use xlink:href="#gentle-wave" x="48" y="0"></use>
-            <use xlink:href="#gentle-wave" x="48" y="3"></use>
-            <use xlink:href="#gentle-wave" x="48" y="5"></use>
-            <use xlink:href="#gentle-wave" x="48" y="7"></use>
-          </g>
-        </svg>
-      </div>
+      <Wave />
       <main>
         <div class="inner">
           <div id="main" class="pjax">
@@ -134,6 +117,9 @@ const { title, lang, desc, keywords } = Astro.props;
         ></SiteSearch>
       )
     }
+    <BaiduAnalytics />
+    <GoogleAnalytics />
+    <Clarity />
   </body>
 
 </html>

@@ -1,0 +1,7 @@
+@import "_variables";
+@import "_mixins";
+
+if $_iconfont = astro-config('style.iconfont')
+  @import $_iconfont;
+else
+  @import "_iconfont";
