@@ -8,6 +8,12 @@ site:
   lang: en
   alternate: testName # 站点大标题
 
+widgets:
+  # if true, will show random posts
+  random_posts: true
+  # if true, will show recent comments
+  recent_comments: true
+
 footer:
   # Specify the date when the site was set up. If not defined, current year will be used.
   since: 2022
@@ -38,6 +44,38 @@ algolia:
 
 experiments:
   mobileWidth: 820px
+
+# https://twikoo.js.org
+twikoo:
+  enable: false
+  link: "https://cdn.staticfile.org/twikoo/1.6.30/twikoo.all.min.js"
+  mode: vercel # vercel或tencent
+  envId: "https://example.com" # twikoo环境ID,vercel填地址
+  region:
+
+# https://waline.js.org/
+waline:
+  enable: false
+  serverURL: ""
+  lang: "zh-CN"
+  locale: {} # https://waline.js.org/guide/features/i18n.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80
+  emoji: # 表情包
+    - https://unpkg.com/@waline/emojis@1.0.1/weibo
+    - https://unpkg.com/@waline/emojis@1.0.1/alus
+    - https://unpkg.com/@waline/emojis@1.0.1/bilibili
+    - https://unpkg.com/@waline/emojis@1.0.1/qq
+    - https://unpkg.com/@waline/emojis@1.0.1/tieba
+    - https://unpkg.com/@waline/emojis@1.0.1/tw-emoji
+  meta: # 可以填写的内容
+    - nick
+    - mail
+    - link
+  requiredMeta: # 必须填写的内容
+    - nick
+    - mail
+  wordLimit: 0 # 字数限制,0为不限制
+  pageSize: 10 # 每页评论条数
+  pageview: false # 是否开启浏览量统计,可独立开启
 
 font:
   enable: true

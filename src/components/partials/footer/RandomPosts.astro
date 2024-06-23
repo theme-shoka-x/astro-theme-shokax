@@ -1,0 +1,32 @@
+---
+import { widgets } from '@utils/config'
+import { __ } from '@utils/i18n'
+import WidgetItem from './WidgetItem.vue'
+
+const { random_posts } = widgets
+interface Post {
+  title?: string
+  link?: string
+  path?: string
+  categories?: string[]
+}
+const posts: Post[] = [
+  { categories: ['test', 'test2'], title: 'test', link: '/test'}, 
+  { categories: ['test', 'test2'], title: 'test', link: '/test'}, 
+  { categories: ['test', 'test2'], title: 'test', link: '/test'}
+];
+---
+{
+  random_posts && (
+    <div class="rpost">
+      <h2>{ __('index.random_posts') }</h2>
+      <ul>
+        {
+          posts.map(post => (
+            <WidgetItem post={post} />
+          ))
+        }
+      </ul>
+    </div>
+  )
+}

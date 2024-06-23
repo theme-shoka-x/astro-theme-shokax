@@ -53,6 +53,32 @@ interface FireworksConfig {
   options: Parameters<typeof firework>[0]
 }
 
+interface WidgetsConfig {
+  random_posts: boolean
+  recent_comments: boolean
+}
+
+interface TwikooConfig {
+  enable: boolean
+  link: string
+  mode: string
+  envId: string
+  region: string
+}
+
+interface WalineConfig {
+  enable: boolean
+  serverURL: string
+  lang: string
+  locale: any
+  emoji: string[]
+  meta: string[]
+  requiredMeta: string[]
+  wordLimit: number
+  pageSize: number
+  pageview: boolean
+}
+
 const config = yaml.load(fs.readFileSync('src/config.yml', 'utf8')) as {
   site: Partial<SiteConfig>
   footer: Partial<FooterConfig>
@@ -60,6 +86,9 @@ const config = yaml.load(fs.readFileSync('src/config.yml', 'utf8')) as {
   loader: LoaderConfig
   visitor: VisitorConfig
   fireworks: FireworksConfig
+  widgets: WidgetsConfig
+  twikoo: TwikooConfig
+  waline: WalineConfig
 }
 
 export const BASE_URL = import.meta.env.BASE_URL.endsWith('/')
@@ -72,3 +101,6 @@ export const algolia = config.algolia
 export const loader = config.loader
 export const visitor = config.visitor
 export const fireworks = config.fireworks
+export const widgets = config.widgets
+export const twikoo = config.twikoo
+export const waline = config.waline

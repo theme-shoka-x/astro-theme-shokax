@@ -1,0 +1,18 @@
+---
+import { widgets, waline, twikoo } from '@utils/config'
+import { __ } from '@utils/i18n'
+
+const { recent_comments } = widgets
+---
+{
+  recent_comments && (
+    <div class="rpost">
+      <h2>{ __('index.recent_comments') }</h2>
+      {
+        (waline?.enable || twikoo?.enable) && (
+          <ul class="leancloud-recent-comment" id="new-comment"></ul>
+        )
+      }
+    </div>
+  )
+}

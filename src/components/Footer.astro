@@ -1,90 +1,74 @@
 ---
-import Image from 'astro/components/Image.astro'
-import { footer, site } from '@utils/config'
-import { __ } from '@utils/i18n'
-
-const copyrightYear = new Date().getFullYear()
+import FooterStatus from '@components/partials/footer/FooterStatus.astro'
+import RandomPosts from '@components/partials/footer/RandomPosts.astro'
+import RecentComments from './partials/footer/RecentComments.astro'
 ---
 
-<div class="status">
-  <div id="copyright">
-    {
-      footer.since
-      && footer.since !== copyrightYear
-      && <>&copy; {`${footer.since} -`}</>
-    }
-    <span itemprop="copyrightYear">
-      {copyrightYear}
-    </span>
-    <span class="with-love">
-      <i class={`ic i-${footer.icon?.name}`}></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">
-      {`${site.author} @ ${site.alternate ? site.alternate : site.title}`}
-    </span>
+<footer id="footer">
+  <div class="inner">
+    <div class="widgets">
+      <RandomPosts />
+      <RecentComments />
+    </div>
+    <FooterStatus />
   </div>
-  {footer.count && <div class="count">{/* TODO */}</div>}
-  {
-    footer.powered && (
-      <div class="powered-by">
-        <div class="powered-by">
-          {__('footer.powered')}
-          <a href="https://astro.build" rel="noopener" target="_blank">
-            Astro
-          </a>
-          & Theme.
-          <a
-            href="https://github.com/theme-shoka-x/astro-theme-shokax"
-            rel="noopener"
-            target="_blank"
-          >
-            ShokaX
-          </a>
-        </div>
-      </div>
-    )
-  }
-  {
-    footer.icp?.enable && (
-      <span style="display:inline;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">
-        <a href="https://beian.miit.gov.cn">{footer.icp.icpnumber}</a>
-        {footer.icp?.beian && footer.icp.recordCode && (
-          <span>
-            <br />
-            <a
-              target="_blank"
-              href={`https://beian.mps.gov.cn/#/query/webSearch?code=${footer.icp.recordCode}`}
-            >
-              <Image
-                src={footer.icp.icon}
-                style="max-width: 2em;display:inline;"
-                width="20"
-                height="20"
-                alt="备案"
-              />
-              {footer.icp.beian}
-            </a>
-          </span>
-        )}
-      </span>
-    )
-  }
-</div>
+</footer>
 
-<style lang="stylus" define:vars={{ color: footer?.icon?.color }}>
+<style lang="stylus" scoped>
+  @import '../styles/_mixins';
+  #footer {
+    color: var(--grey-5);
+    font-size: $font-size-small;
+    background: var(--body-bg-shadow);
 
-  .status {
-    width: 100%;
-    text-align: center;
+    .inner {
+      margin: 2rem auto .625rem;
+      width: $content-desktop;
+      position: relative;
+
+      if (astro-config('sidebar.position') == 'left') {
+        padding-left: 16.25rem;
+      } else {
+        padding-right: 16.25rem;
+      }
+
+      +desktop-large() {
+        width: $content-desktop-large;
+      }
+
+      +desktop-largest() {
+        width: $content-desktop-largest;
+      }
+
+      +tablet-mobile() {
+        padding-left: 0;
+        padding-right: 0;
+        width: auto;
+      }
+    }
   }
 
-  .with-love {
-    color: var(--color);
-    display: inline-block;
-    margin: 0 .3125rem 0 .125rem;
-  }
+  .widgets {
+    display: flex;
+    z-index: 1;
+    background: var(--body-bg-shadow);
+    justify-content: space-around;
 
-  .powered-by, .theme-info {
-    display: inline-block;
+    :global(> div) {
+      width: calc(50% - 2rem);
+      padding: 1rem;
+    }
+
+    +mobile() {
+      flex-direction: column-reverse;
+
+      :global(> div) {
+        width: calc(100% - 1rem) !important;
+      }
+    }
+
+    :global(ul) {
+      counter-reset: counter;
+    }
   }
 </style>
