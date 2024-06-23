@@ -1,0 +1,18 @@
+---
+
+import { fireworks } from '@utils/config'
+
+---
+<mouse-firework data-options={JSON.stringify(fireworks.options)} />
+
+<script>
+  import mouseFirework from 'mouse-firework';
+  class Firework extends HTMLElement {
+    constructor() {
+      super();
+      const options = this.dataset.options!;
+      mouseFirework(JSON.parse(options)); 
+    }
+  }
+  customElements.define('mouse-firework', Firework);
+</script>

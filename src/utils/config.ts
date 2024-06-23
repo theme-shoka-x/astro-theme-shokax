@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import yaml from 'js-yaml'
+import type firework from 'mouse-firework'
 
 interface SiteConfig {
   title: string
@@ -47,12 +48,18 @@ interface VisitorConfig {
   googleAnalytics: string | boolean
 }
 
+interface FireworksConfig {
+  enable: boolean
+  options: Parameters<typeof firework>[0]
+}
+
 const config = yaml.load(fs.readFileSync('src/config.yml', 'utf8')) as {
   site: Partial<SiteConfig>
   footer: Partial<FooterConfig>
   algolia: AlgoliaSearchConfig
   loader: LoaderConfig
   visitor: VisitorConfig
+  fireworks: FireworksConfig
 }
 
 export const BASE_URL = import.meta.env.BASE_URL.endsWith('/')
@@ -64,3 +71,4 @@ export const footer = config.footer
 export const algolia = config.algolia
 export const loader = config.loader
 export const visitor = config.visitor
+export const fireworks = config.fireworks

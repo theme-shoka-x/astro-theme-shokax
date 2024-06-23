@@ -57,8 +57,10 @@ export function transition(target: HTMLElement, type: number | string | Function
       }
       break
     default:
+      // eslint-disable-next-line ts/ban-ts-comment
       // @ts-expect-error
       animation = type
+      // eslint-disable-next-line ts/ban-ts-comment
       // @ts-expect-error
       display = type.display
       break

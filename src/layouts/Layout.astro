@@ -7,7 +7,8 @@ import Wave from '@components/partials/Wave.astro'
 import BaiduAnalytics from '@components/thirdparty/BaiduAnalytics.astro'
 import Clarity from '@components/thirdparty/Clarity.astro'
 import GoogleAnalytics from '@components/thirdparty/GoogleAnalytics.astro'
-import { algolia, loader, site } from '@utils/config'
+import MouseFirework from '@components/thirdparty/MouseFirework.astro'
+import { algolia, loader, site, fireworks } from '@utils/config'
 import { ViewTransitions } from 'astro:transitions'
 import { cover } from '@utils/cover'
 import { Image } from 'astro:assets'
@@ -120,6 +121,9 @@ const { title, lang, desc, keywords } = Astro.props;
     <BaiduAnalytics />
     <GoogleAnalytics />
     <Clarity />
+    {
+      fireworks.enable && <MouseFirework />
+    }
   </body>
 
 </html>
