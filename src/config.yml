@@ -81,3 +81,12 @@ font:
   codes:
     external: true
     family: Inconsolata
+
+# //at.alicdn.com/t/c/font_4415496_59g1326wajd.css => 4415496_59g1326wajd
+# 自定义iconfont图标参见文档教程
+iconfont: "4415496_59g1326wajd"
+
+visitor:
+  clarity: false
+  baiduAnalytics: false
+  googleAnalytics: false

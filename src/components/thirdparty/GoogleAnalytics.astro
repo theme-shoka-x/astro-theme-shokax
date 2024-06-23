@@ -1,0 +1,18 @@
+---
+import { visitor } from '@utils/config'
+
+const { googleAnalytics } = visitor
+---
+{
+  googleAnalytics && (
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalytics}`} />
+    <script is:inline data-astro-rerun define:vars={{ googleAnalytics }}>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', googleAnalytics)
+    </script>
+  )
+}

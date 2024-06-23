@@ -41,11 +41,18 @@ interface LoaderConfig {
   switch: boolean
 }
 
+interface VisitorConfig {
+  clarity: string | boolean
+  baiduAnalytics: string | boolean
+  googleAnalytics: string | boolean
+}
+
 const config = yaml.load(fs.readFileSync('src/config.yml', 'utf8')) as {
   site: Partial<SiteConfig>
   footer: Partial<FooterConfig>
   algolia: AlgoliaSearchConfig
   loader: LoaderConfig
+  visitor: VisitorConfig
 }
 
 export const BASE_URL = import.meta.env.BASE_URL.endsWith('/')
@@ -56,3 +63,4 @@ export const site = config.site
 export const footer = config.footer
 export const algolia = config.algolia
 export const loader = config.loader
+export const visitor = config.visitor

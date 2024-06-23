@@ -49,8 +49,8 @@ search.addWidgets([
     templates: {
       text(data) {
         const stats = props.stats
-          .replace(/\$\{hits}/, data.nbHits.toString())
-          .replace(/\$\{time}/, data.processingTimeMS.toString())
+          .replace(/\$\{hits\}/, data.nbHits.toString())
+          .replace(/\$\{time\}/, data.processingTimeMS.toString())
         return `${stats}<span class="algolia-powered"></span><hr>`
       },
     },
@@ -65,7 +65,7 @@ search.addWidgets([
       },
       empty(data) {
         return `<div id="hits-empty">${
-            props.empty.replace(/\$\{query}/, data.query)
+            props.empty.replace(/\$\{query\}/, data.query)
             }</div>`
       },
     },

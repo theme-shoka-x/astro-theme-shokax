@@ -1,0 +1,19 @@
+---
+import { visitor } from '@utils/config'
+
+const { baiduAnalytics } = visitor
+---
+{
+  baiduAnalytics && (
+    <script is:inline data-astro-rerun define:vars={{ baiduAnalytics }}>
+      var _hmt = _hmt || [];
+      (function () {
+          const hm = document.createElement("script");
+          hm.src = `https://hm.baidu.com/hm.js?${ baiduAnalytics }`
+          hm.async = true;
+          const s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  )
+}

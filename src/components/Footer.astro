@@ -3,7 +3,7 @@ import Image from 'astro/components/Image.astro'
 import { footer, site } from '@utils/config'
 import { __ } from '@utils/i18n'
 
-const copyrightYear = new Date().getFullYear();
+const copyrightYear = new Date().getFullYear()
 ---
 
 <div class="status">
@@ -11,7 +11,7 @@ const copyrightYear = new Date().getFullYear();
     {
       footer.since
       && footer.since !== copyrightYear
-      && `&copy; ${footer.since} -`
+      && <>&copy; {`${footer.since} -`}</>
     }
     <span itemprop="copyrightYear">
       {copyrightYear}
