@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets'
 import { cover } from '@utils/cover'
 ---
-<div class="imgs" class="pjax">
+<div id="imgs" class="pjax">
   {
     cover.fixedCover && (
       <Image
@@ -14,10 +14,20 @@ import { cover } from '@utils/cover'
     )
   }
   {
-    !cover.fixedCover
-    && {
-        /* TODO */
-      }
+    !cover.fixedCover && cover.covers
+    && (
+      cover.covers.length === 6 ? (
+        <ul>
+          {
+            cover.covers.map((cover) => (
+              <li class="item" style={{ backgroundImage: `url(${cover})` }}></li>
+            ))
+          }
+        </ul>
+      ) : (
+        <img src={cover.covers[0]} loading="eager" decoding="async" fetchpriority="high" alt="header img"/>
+      )
+    )
   }
 </div>
 
