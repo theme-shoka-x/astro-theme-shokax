@@ -3,15 +3,13 @@ import Footer from '@components/Footer.astro'
 import Header from '@components/Header.astro'
 import BaseHead from '@components/partials/BaseHead.astro'
 import Loading from '@components/partials/Loading.vue'
-import Wave from '@components/partials/Wave.astro'
+import Wave from '@components/partials/header/Wave.astro'
 import BaiduAnalytics from '@components/thirdparty/BaiduAnalytics.astro'
 import Clarity from '@components/thirdparty/Clarity.astro'
 import GoogleAnalytics from '@components/thirdparty/GoogleAnalytics.astro'
 import MouseFirework from '@components/thirdparty/MouseFirework.astro'
 import { algolia, loader, site, fireworks } from '@utils/config'
 import { ViewTransitions } from 'astro:transitions'
-import { cover } from '@utils/cover'
-import { Image } from 'astro:assets'
 import SiteSearch from '@components/thirdparty/SiteSearch.vue'
 import { __ } from '@utils/i18n'
 
@@ -39,49 +37,7 @@ const { title, lang, desc, keywords } = Astro.props;
   <body itemscope itemtype="http://schema.org/WebPage">
     <Loading start={loader.start} client:only />
     <div id="container">
-      <header id="header" itemscope itemtype="http://schema.org/WPHeader">
-        <div class="inner">
-          <div id="brand">
-            <div class="pjax">
-              <slot name="header">
-                <a href={site.url ? site.url : '/'} class="logo" rel="start">
-                  {site.alternate && <p class="artboard">{site.alternate}</p>}
-                  <h1 itemprop="name headline" class="title">
-                    {title}
-                  </h1>
-                  {
-                    site.subtitle && (
-                      <p class="meta" itemprop="description">
-                        {`= ${site.subtitle} =`}
-                      </p>
-                    )
-                  }
-                </a>
-              </slot>
-            </div>
-          </div>
-          <Header />
-        </div>
-        <div class="imgs" class="pjax">
-          {
-            cover.fixedCover && (
-              <Image
-                src={cover.fixedCover}
-                alt="header img"
-                width={1280}
-                height={800}
-              />
-            )
-          }
-          {
-            !cover.fixedCover
-            && {
-                /* TODO */
-              }
-          }
-        </div>
-      </header>
-      <Wave />
+      <Header title={title} />
       <main>
         <div class="inner">
           <div id="main" class="pjax">
