@@ -35,3 +35,49 @@ algolia:
   indexName:
   appId:
   apiKey:
+
+experiments:
+  mobileWidth: 820px
+
+font:
+  enable: true
+  # 从google字体库加载,如果自定义@font-face请关闭
+  loadFromGoogle: true
+  # 字体选项:
+  # `external`:从google字体库加载字体.
+  # `family: 字体家族名,无需引号
+  # `size: x.x`. 以`em`为单位. 默认: 1 (16px)
+
+  # 适用于所有在body标签内的文字.
+  global:
+    external: true
+    family: Mulish
+    size:
+
+  # 大标题字体.
+  logo:
+    external: true
+    family: Fredericka the Great
+    size: 3.5
+
+  # 页面标题字体.
+  title:
+    external: true
+    family: Noto Serif JP
+    size: 2.5
+
+  # 标题字体.
+  headings:
+    external: true
+    family: Noto Serif SC
+    size:
+
+  # 文章字体.
+  posts:
+    external: false
+    family:
+
+  # 代码块的字体
+  codes:
+    external: true
+    family: Inconsolata

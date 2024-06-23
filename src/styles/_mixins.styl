@@ -1,4 +1,6 @@
-$mobile-wdith = 820px
+@import "_variables";
+
+$mobile-width = unquote(astro-config('experiments.mobileWidth'))
 
 the-transition(duration = .2s, function = ease-in-out, delay = 0s, property = all) {
   transition:property duration function delay;
@@ -17,7 +19,7 @@ mobile-small() {
 }
 
 mobile() {
-  @media (max-width: $mobile-wdith) {
+  @media (max-width: $mobile-width) {
     {block};
   }
 }
@@ -29,13 +31,13 @@ tablet-mobile() {
 }
 
 tablet-desktop() {
-  @media (min-width: $mobile-wdith) {
+  @media (min-width: $mobile-width) {
     {block};
   }
 }
 
 tablet() {
-  @media (min-width: $mobile-wdith) and (max-width: 1043px) {
+  @media (min-width: $mobile-width) and (max-width: 1043px) {
     {block};
   }
 }

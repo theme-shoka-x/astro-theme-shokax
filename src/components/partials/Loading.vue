@@ -68,7 +68,7 @@ defineExpose({
 </template>
 
 <style lang="stylus" scoped>
-@import "../../styles/mixins";
+@import "../../styles/_mixins";
 
 #loading {
   @extend $fix-fullscreen;
