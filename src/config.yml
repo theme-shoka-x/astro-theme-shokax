@@ -43,6 +43,7 @@ algolia:
   apiKey:
 
 experiments:
+  usingRelative: false # covers.yml 使用相对路径
   mobileWidth: 820px
 
 # https://twikoo.js.org
@@ -158,3 +159,5 @@ fireworks:
           radius: 20
           alpha: 0.5
           lineWidth: 6
+
+image_server: # "https://acg.xydwz.cn/api/api.php"

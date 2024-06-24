@@ -79,6 +79,11 @@ interface WalineConfig {
   pageview: boolean
 }
 
+interface ExperimentsConfig {
+  usingRelative: boolean
+  mobileWidth: string
+}
+
 const config = yaml.load(fs.readFileSync('src/config.yml', 'utf8')) as {
   site: Partial<SiteConfig>
   footer: Partial<FooterConfig>
@@ -89,6 +94,8 @@ const config = yaml.load(fs.readFileSync('src/config.yml', 'utf8')) as {
   widgets: WidgetsConfig
   twikoo: TwikooConfig
   waline: WalineConfig
+  experiments: ExperimentsConfig
+  image_server?: string
 }
 
 export const BASE_URL = import.meta.env.BASE_URL.endsWith('/')
@@ -104,3 +111,5 @@ export const fireworks = config.fireworks
 export const widgets = config.widgets
 export const twikoo = config.twikoo
 export const waline = config.waline
+export const experiments = config.experiments
+export const image_server = config.image_server

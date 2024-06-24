@@ -1,12 +1,18 @@
 ---
 import { Image } from 'astro:assets'
-import { cover } from '@utils/cover'
+import { cover, randomCover } from '@utils/cover'
+import { image_server, experiments } from '@utils/config'
+
+let { fixedCover, covers } = cover
+if (covers && covers.length >= 6) {
+  covers = randomCover(experiments.usingRelative, 6, image_server, covers)
+}
 ---
 <div id="imgs" class="pjax">
   {
-    cover.fixedCover && (
+    fixedCover && (
       <Image
-        src={cover.fixedCover}
+        src={fixedCover}
         alt="header img"
         width={1280}
         height={800}
@@ -14,18 +20,18 @@ import { cover } from '@utils/cover'
     )
   }
   {
-    !cover.fixedCover && cover.covers
+    !fixedCover && covers
     && (
-      cover.covers.length === 6 ? (
+      covers.length === 6 ? (
         <ul>
           {
-            cover.covers.map((cover) => (
+            covers.map((cover) => (
               <li class="item" style={{ backgroundImage: `url(${cover})` }}></li>
             ))
           }
         </ul>
       ) : (
-        <img src={cover.covers[0]} loading="eager" decoding="async" fetchpriority="high" alt="header img"/>
+        <img src={covers[0]} loading="eager" decoding="async" fetchpriority="high" alt="header img"/>
       )
     )
   }
