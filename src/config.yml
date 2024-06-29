@@ -14,6 +14,19 @@ widgets:
   # if true, will show recent comments
   recent_comments: true
 
+menu:
+  home: / || home
+  about:
+    default: / || user
+    aboutsite: /about/  || user
+    admiration: /admiration/ || coffee
+  posts:
+    default: / || feather
+    archives: /archives/ || list-alt
+    categories: /categories/ || th
+    tags: /tags/ || tags
+  friends: /friends/ || heart
+
 footer:
   # Specify the date when the site was set up. If not defined, current year will be used.
   since: 2022

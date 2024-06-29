@@ -1,42 +1,65 @@
----
-import { algolia, site } from '@utils/config'
-import { __ } from '@utils/i18n'
+<script setup lang="ts">
+import { useScroll } from '@vueuse/core'
+import { ref, watch } from 'vue'
 import ThemeButton from './ThemeButton.vue'
 import NavSearch from './NavSearch.vue'
----
-<nav id="nav">
-  <div class="inner">
-    <div class="toggle">
-      <div class="lines" aria-label={__('accessibility.nav_toggle')}>
-        <span class="line"></span>
-        <span class="line"></span>
-        <span class="line"></span>
-      </div>
-    </div>
-    <ul class="menu">
-      <li class="item title">
-        <a href={site.url} rel="start">
-          {site.alternate || site.title}
-        </a>
-      </li>
-    </ul>
-    <ul class="right" id="rightNav">
-      <li class="item theme">
-        <ThemeButton client:only />
-      </li>
-      {
-        algolia.enable && (
-          <li class="item search">
-            <NavSearch client:only />
-          </li>
-        )
-      }
-    </ul>
-  </div>
-</nav>
+import NavMenu from './NavMenu.vue'
 
-<style lang="stylus" scoped>
-  @import '../../../styles/_mixins';
+defineProps<{
+  algolia: {
+    enable: boolean
+  }
+  menu: Record<string, string | Record<string, string>>
+  site: {
+    title?: string
+    alternate?: string
+    url?: string
+    lang?: string
+  }
+  languageData: any
+  toggleLabel: string
+}>()
+
+const down = ref(false)
+const up = ref(false)
+const { directions } = useScroll(window)
+watch(directions, () => {
+  if (directions.top) {
+    down.value = false
+    up.value = true
+  }
+  else if (directions.bottom) {
+    down.value = true
+    up.value = false
+  }
+}, { immediate: true })
+</script>
+
+<template>
+  <nav id="nav" class="show" :class="{ down, up }">
+    <div class="inner">
+      <div class="toggle">
+        <div class="lines" :aria-label="toggleLabel">
+          <span class="line" />
+          <span class="line" />
+          <span class="line" />
+        </div>
+      </div>
+      <NavMenu :menu="menu" :site="site" :language-data="languageData" />
+      <ul id="rightNav" class="right">
+        <li class="item theme">
+          <ThemeButton />
+        </li>
+        <li v-if="algolia.enable" class="item search">
+          <NavSearch />
+        </li>
+      </ul>
+    </div>
+  </nav>
+</template>
+
+<style lang="stylus">
+  @import '../../../../styles/_mixins';
   #nav {
     position: fixed;
     z-index: $zindex-2;

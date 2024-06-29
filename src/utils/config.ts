@@ -84,6 +84,10 @@ interface ExperimentsConfig {
   mobileWidth: string
 }
 
+interface MenuConfig {
+  [key: string]: string | { [key: string]: string }
+}
+
 const config = yaml.load(fs.readFileSync('src/config.yml', 'utf8')) as {
   site: Partial<SiteConfig>
   footer: Partial<FooterConfig>
@@ -96,6 +100,7 @@ const config = yaml.load(fs.readFileSync('src/config.yml', 'utf8')) as {
   waline: WalineConfig
   experiments: ExperimentsConfig
   image_server?: string
+  menu: MenuConfig
 }
 
 export const BASE_URL = import.meta.env.BASE_URL.endsWith('/')
@@ -113,3 +118,4 @@ export const twikoo = config.twikoo
 export const waline = config.waline
 export const experiments = config.experiments
 export const image_server = config.image_server
+export const menu = config.menu
