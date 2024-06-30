@@ -3,7 +3,6 @@ import Footer from '@components/Footer.astro'
 import Header from '@components/Header.astro'
 import BaseHead from '@components/partials/BaseHead.astro'
 import Loading from '@components/partials/Loading.vue'
-import Wave from '@components/partials/header/Wave.astro'
 import BaiduAnalytics from '@components/thirdparty/BaiduAnalytics.astro'
 import Clarity from '@components/thirdparty/Clarity.astro'
 import GoogleAnalytics from '@components/thirdparty/GoogleAnalytics.astro'
@@ -27,7 +26,7 @@ const { title, lang, desc, keywords } = Astro.props;
 <html lang={lang}>
 <style is:global lang="stylus">
   @import "../styles/_colors"; 
-  @import "../styles/_common/scaffolding"; 
+  @import "../styles/app"; 
 </style>
   <head>
     <BaseHead title={title} description={desc} keywords={keywords} />

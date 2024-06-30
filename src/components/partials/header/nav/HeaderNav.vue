@@ -36,7 +36,7 @@ watch(directions, () => {
 </script>
 
 <template>
-  <nav id="nav" class="show" :class="{ down, up }">
+  <nav id="nav" :class="{ down, up }">
     <div class="inner">
       <div class="toggle">
         <div class="lines" :aria-label="toggleLabel">

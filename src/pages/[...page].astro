@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+export async function getStaticPaths({ paginate }: { paginate: Function }) {
+  const posts = await getCollection("blog");
+  return paginate(posts, {
+    pageSize: 1,
+  });
+}
+---
+
+<Layout title="Welcome to Astro." lang="zh-CN" desc="">
+</Layout>
+
+<style>
+</style>
