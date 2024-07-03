@@ -1,0 +1,96 @@
+---
+import { __ } from '@utils/i18n'
+
+type Props = {
+  item: {
+    pubDate: Date
+    content: string
+  }
+  full?: boolean
+}
+
+const { item, full } = Astro.props
+const create_title = __('post.created') + __('symbol.colon') + item.pubDate.toString()
+---
+
+<div class="meta">
+    <span class="item" title={create_title}>
+        <span class="icon">
+            <i class="i-ic i-calendar"></i>
+            {
+                full && (
+<span class="text">
+                    { __('post.posted') }
+                </span>
+)
+            }
+        </span>
+        <time itemprop="dateCreated datePublished" datetime={item.pubDate.toISOString()}>
+            { item.pubDate.toLocaleDateString()}
+        </time>
+    </span>
+    <span class="item" title={__('symbols_count_time.count')}>
+        <span class="icon">
+            <i class="ic i-pen"></i>
+            {
+                full && (
+<span class="text">
+                    { __('symbols_count_time.count') }
+                </span>
+)
+            }
+        </span>
+        <span>
+            {/* TODO 字数统计 */}
+        </span>
+        <span class="text">
+            { __('symbols_count_time.word') }
+        </span>
+    </span>
+    <span class="item" title={__('symbols_count_time.time')}>
+        <span class="icon">
+            <i class="ic i-clock"></i>
+            {
+                full && (
+<span class="text">
+                    { __('symbols_count_time.time') }
+                </span>
+)
+            }
+        </span>
+        <span>
+            { /* 阅读时间 */ }
+        </span>
+    </span>
+</div>
+
+<style lang="stylus">
+@import "../../styles/_variables.styl";
+
+.meta {
+    font-size: $font-size-smaller;
+    color: var(--grey-5);
+
+    .ic {
+      margin-right: .0625rem;
+    }
+
+    .item + .item {
+      margin-left: .625rem;
+    }
+
+    &.footer {
+      position: absolute;
+      bottom: .5rem;
+      max-width: calc(100% - 7rem);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      justify-content: flex-start;
+
+      span {
+        margin-right: .5rem;
+      }
+    }
+}
+</style>

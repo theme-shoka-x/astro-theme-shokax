@@ -1,0 +1,217 @@
+---
+import { experiments } from '@utils/config'
+import { randomCover } from '@utils/cover'
+import PostMeta from '@components/index/PostMeta.astro'
+
+type Props = {
+    title: string
+    url: string
+    desc?: string
+    excerpt?: string
+    content: string
+    cates?: string[]
+    pubDate: Date
+}
+
+const { title, url, desc, excerpt, content, cates, pubDate } = Astro.props
+const postExcerpt = excerpt || desc || content.slice(0, 200)
+const lastcat = cates && cates.length > 0 ? cates[cates.length - 1] : ''
+---
+<article class="item">
+    <div class="cover">
+        <img src={randomCover(experiments.usingRelative)[0]} loading="lazy" decoding="async">
+    </div>
+    <div class="info">
+        <PostMeta item={{ pubDate, content }}></PostMeta>
+        <h3>
+            <a href={url} itemprop="url" title={title}>
+                { title } <i class="ic i-link-alt"></i>
+            </a>
+        </h3>
+        <div class="excerpt">
+            { postExcerpt }
+        </div>
+        {
+            cates && cates.length > 0 && (
+                <div class="meta footer">
+                    <span>
+                        {/* TODO Lastcat */}
+                    </span>
+                </div>
+            )
+        }
+        <a class="btn" href={url} itemprop="url" title={title}>
+            ...more
+        </a>
+    </div>
+</article>
+
+<style lang="stylus">
+@import "../../styles/_variables.styl";
+@import "../../styles/_mixins.styl";
+@import "../../styles/_common/animate.styl"
+
+.item {
+    position: relative;
+    color: inherit;
+    width: calc(50% - 2rem);
+    min-width: calc(50% - 2rem);
+    height: 14rem;
+    margin: 1rem;
+    opacity: 0;
+
+    &.show {
+        @extend .slide-up-big-in;
+        opacity: 1;
+    }
+
+    +mobile() {
+        width: calc(100% - 1rem) !important;
+        min-width: calc(100% - 1rem) !important;
+        margin: 1rem .5rem !important;
+    }
+    display: flex;
+    border-radius: .625rem;
+
+    width: calc(100% - 2rem);
+    min-width: calc(100% - 2rem);
+
+    shadow-box(false);
+    the-transition();
+
+
+    +mobile() {
+        flex-direction: column;
+        height: fit-content;
+        max-height: fit-content;
+    }
+
+    &:hover {
+        box-shadow: 0 0 2rem var(--box-bg-shadow);
+
+        .cover img {
+        transform: scale(1.05) rotate(1deg);
+        }
+    }
+  }
+
+  .cover {
+    width: 50%;
+    margin-right: 1.5rem;
+    clip-path: polygon(0 0, 92% 0%, 100% 100%, 0% 100%);
+    border-radius: .625rem 0 0 .625rem;
+    overflow: hidden;
+
+    +mobile() {
+      width: 100%;
+      height: 14rem;
+      margin: auto;
+      clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+      border-radius: .625rem .625rem 0 0;
+    }
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      the-transition();
+    }
+  }
+
+  .info {
+    position: relative;
+    width: 50%;
+    padding: 1rem 1.5rem 3rem 0;
+    perspective: 62.5rem;
+
+    +mobile() {
+      width: 100%;
+      height: 14rem;
+      padding: 0 1rem 3rem;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: flex-end;
+      margin: 0;
+
+      +mobile() {
+        .item:not(:first-child) {
+          display: none;
+        }
+      }
+    }
+
+    h3 {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      margin: .625rem 0;
+      color: var(--primary-color);
+    }
+
+    .excerpt {
+      overflow: hidden;
+      font-size: $font-size-small;
+      max-height: 5rem;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      text-overflow: ellipsis;
+    }
+
+  }
+
+
+  > .item:nth-child(even) {
+    flex-direction: row-reverse;
+
+    +mobile() {
+      flex-direction: column;
+    }
+
+    .cover {
+      margin-right: auto;
+      margin-left: 1.5rem;
+      clip-path: polygon(0 0%, 100% 0%, 100% 100%, 8% 100%);
+      border-radius: 0 .625rem .625rem 0;
+
+      +mobile() {
+        width: 100%;
+        margin: auto;
+        clip-path: polygon(0 0,100% 0,100% 100%,0 92%);
+        border-radius: .625rem .625rem 0 0;
+      }
+    }
+
+    .info {
+      padding: 1rem 0 3rem 1.5rem;
+
+      +mobile() {
+        padding: 0 1rem 3rem;
+      }
+
+      .meta {
+        justify-content: flex-start;
+      }
+    }
+
+    .btn {
+      left: 0;
+      right: auto;
+      border-radius: 0 1rem;
+      background-image: linear-gradient(to right, var(--color-orange) 0, var(--color-pink) 100%);
+    }
+
+    .meta.footer {
+      right: .5rem;
+      justify-content: flex-start;
+    }
+
+    &:hover {
+      .cover img {
+        transform: scale(1.05) rotate(-1deg);
+      }
+    }
+  }
+</style>

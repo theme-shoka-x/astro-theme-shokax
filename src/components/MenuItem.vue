@@ -22,9 +22,8 @@ const trim = (str?: string) => str != null ? str.trim() : ''
 
 const path = props.path.split('||')
 let itemURL = path[0].trim()
-if (!itemURL.startsWith('http')) {
+if (!itemURL.startsWith('http'))
   itemURL = itemURL.replace('//', '/')
-}
 
 const menuText = __(`menu.${props.name}`).replace('menu.', '')
 const iconClass = `i-${trim(path[1])}`
@@ -40,9 +39,9 @@ if (props.subList) {
   subListEntries = props.subList.map(([subName, subValue]) => {
     const subPath = subValue.split('||')
     let subItemURL = subPath[0].trim()
-    if (subItemURL === '/') {
+    if (subItemURL === '/')
       subItemURL = 'javascript:void(0)'
-    }
+
     const subMenuText = __(`menu.${subName === 'default' ? props.name : subName}`).replace('menu.', '')
     return {
       subName,

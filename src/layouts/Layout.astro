@@ -14,64 +14,88 @@ import { __ } from '@utils/i18n'
 
 interface Props {
   title: string
-  lang: string
   desc: string
   keywords?: string[]
 }
 
-const { title, lang, desc, keywords } = Astro.props;
+const { title, desc, keywords } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={site.lang}>
 <style is:global lang="stylus">
   @import "../styles/_colors"; 
   @import "../styles/app"; 
 </style>
-  <head>
-    <BaseHead title={title} description={desc} keywords={keywords} />
-    <ViewTransitions />
-    <slot name="head" />
-  </head>
-  <body itemscope itemtype="http://schema.org/WebPage">
-    <Loading start={loader.start} client:only />
-    <div id="container">
-      <Header title={title} />
-      <main>
-        <div class="inner">
-          <div id="main" class="pjax">
-            <slot name="content" />
-          </div>
-          <div id="sidebar">
-            <slot name="sidebar">
-              <!-- TODO -->
-            </slot>
-          </div>
-          <div class="dimmer"></div>
+<style>
+main {
+  background: linear-gradient(to top, var(--body-bg-shadow) 0, var(--grey-1) 20%) no-repeat bottom;
+
+  >.inner {
+    width: $content-desktop;
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    if (astro-config('sidebar.position') == 'left') {
+      flex-direction: row-reverse;
+    }
+
+    +desktop-large() {
+      width: $content-desktop-large;
+    }
+
+    +desktop-largest() {
+      width: $content-desktop-largest;
+    }
+  }
+
+}
+</style>
+
+<head>
+  <BaseHead title={title} description={desc} keywords={keywords} />
+  <ViewTransitions />
+  <slot name="head" />
+</head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <Loading start={loader.start} client:only="vue" />
+  <div id="container">
+    <Header title={title} />
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          <slot name="content" />
         </div>
-      </main>
-      <Footer />
-    </div>
-    {
-      algolia.enable && (
-        <SiteSearch
-          client:idle
-          appID={algolia.appId}
-          apiKey={algolia.apiKey}
-          indexName={algolia.indexName}
-          url={site.url as string}
-          placeholder={__('search.placeholder')}
-          empty={__('search.empty')}
-          stats={__('search.stats')}
-        ></SiteSearch>
-      )
-    }
-    <BaiduAnalytics />
-    <GoogleAnalytics />
-    <Clarity />
-    {
-      fireworks.enable && <MouseFirework />
-    }
-  </body>
+        <div id="sidebar">
+          <slot name="sidebar">
+            <!-- TODO -->
+          </slot>
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <Footer />
+  </div>
+  {
+    algolia.enable && (
+      <SiteSearch
+        client:idle
+        appID={algolia.appId}
+        apiKey={algolia.apiKey}
+        indexName={algolia.indexName}
+        url={site.url as string}
+        placeholder={__('search.placeholder')}
+        empty={__('search.empty')}
+        stats={__('search.stats')}
+      ></SiteSearch>
+    )
+  }
+  <BaiduAnalytics />
+  <GoogleAnalytics />
+  <Clarity />
+  {
+    fireworks.enable && <MouseFirework />
+  }
+</body>
 
 </html>

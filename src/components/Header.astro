@@ -16,12 +16,13 @@ const { title } = Astro.props
   <div class="inner">
     <HeaderBrand title={title} />
     <HeaderNav
-      client:only 
+      client:only="vue"
       algolia={algolia}
-      menu={menu} 
-      site={site} 
+      menu={menu}
+      site={site}
       languageData={languageData}
-      toggleLabel={__('accessibility.nav_toggle')} />
+      toggleLabel={__('accessibility.nav_toggle')}
+    />
   </div>
   <Cover />
 </header>

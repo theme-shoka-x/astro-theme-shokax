@@ -12,15 +12,13 @@ export const cover = config
 
 const randomServer = Number.parseInt(String(Math.random() * 4), 10) + 1
 
-export const randomCover = function (usingRelative: boolean, count = 1, image_server?: string, image_list: string[] = []) {
+export const randomCover = function (usingRelative: boolean, count = 1, image_server?: string, image_list: string[] = config.covers as string[]) {
   let i
   if (image_server) {
     if (count && count > 1) {
       const arr: string[] = Array.from({ length: count })
-      for (i = 0; i < arr.length; i++) {
+      for (i = 0; i < arr.length; i++)
         arr[i] = `${image_server}?${Math.floor(Math.random() * 999999)}`
-      }
-
       return arr
     }
 
@@ -42,9 +40,9 @@ export const randomCover = function (usingRelative: boolean, count = 1, image_se
 
   if (count && count > 1) {
     let shuffled = image_list.slice(0)
-    while (shuffled.length <= 6) {
+    while (shuffled.length <= 6)
       shuffled = shuffled.concat(image_list.slice(0))
-    }
+
     i = shuffled.length
     const min = i - count
     let temp

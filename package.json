@@ -10,26 +10,26 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^2.6.4",
-    "@astrojs/check": "^0.5.4",
-    "@astrojs/vue": "^4.0.8",
+    "@antfu/eslint-config": "^2.21.2",
+    "@astrojs/check": "^0.7.0",
+    "@astrojs/vue": "^4.5.0",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^20.11.18",
-    "@typescript-eslint/parser": "^7.0.1",
+    "@types/node": "^20.14.9",
+    "@typescript-eslint/parser": "^7.15.0",
     "@vueuse/core": "^10.11.0",
-    "algoliasearch": "^4.22.1",
-    "astro": "^4.4.0",
+    "algoliasearch": "^4.24.0",
+    "astro": "^4.11.3",
     "hexo-i18n": "^2.0.0",
-    "instantsearch.js": "^4.66.0",
+    "instantsearch.js": "^4.72.2",
     "js-yaml": "^4.1.0",
     "mouse-firework": "^0.0.5",
-    "stylus": "^0.62.0",
+    "stylus": "^0.63.0",
     "theme-shokax-anime": "^0.0.6",
-    "typescript": "^5.3.3",
-    "vue": "^3.4.19"
+    "typescript": "^5.5.3",
+    "vue": "^3.4.31"
   },
   "devDependencies": {
-    "eslint": "^8.56.0",
-    "eslint-plugin-astro": "^0.31.4"
+    "eslint": "^9.6.0",
+    "eslint-plugin-astro": "^1.2.2"
   }
 }
