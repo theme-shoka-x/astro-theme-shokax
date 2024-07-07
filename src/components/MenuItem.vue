@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Ctor from 'hexo-i18n'
+import { __ } from '@utils/i18n'
 
 const props = defineProps<{
   name: string
@@ -7,16 +7,7 @@ const props = defineProps<{
   parent?: boolean
   subList?: [string, string][]
   languageData: any
-  lang: string
 }>()
-
-const i18n = new Ctor({
-  languages: [props.lang],
-})
-
-i18n.set(props.lang, props.languageData) as Record<string, any>
-
-const __ = i18n.__([props.lang])
 
 const trim = (str?: string) => str != null ? str.trim() : ''
 

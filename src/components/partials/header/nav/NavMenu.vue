@@ -18,8 +18,6 @@ const menuEntries = Object.entries(props.menu).map(([name, value]) => {
   }
   return [name, value]
 }) as [string, string | [string, string][]][]
-
-const lang = props.site.lang?.toLowerCase() || 'en'
 </script>
 
 <template>
@@ -30,9 +28,9 @@ const lang = props.site.lang?.toLowerCase() || 'en'
       </a>
     </li>
     <template v-for="([name, value], index) in menuEntries" :key="index">
-      <MenuItem v-if="typeof value === 'string'" :name="name" :path="value" :language-data="languageData" :lang="lang" />
+      <MenuItem v-if="typeof value === 'string'" :name="name" :path="value" :language-data="languageData" />
       <template v-for="([subName, subValue], subIndex) in value" v-else :key="subIndex">
-        <MenuItem v-if="subName === 'default'" :name="name" :path="subValue" :parent="true" :sub-list="value" :language-data="languageData" :lang="lang" />
+        <MenuItem v-if="subName === 'default'" :name="name" :path="subValue" :parent="true" :sub-list="value" :language-data="languageData" />
       </template>
     </template>
   </ul>

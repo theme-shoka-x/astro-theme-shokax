@@ -1,0 +1,30 @@
+---
+import { __ } from '@utils/i18n'
+import PostToC from '../post/PostToC.vue'
+
+type Props = {
+  showToC: boolean
+  content: string
+}
+
+const {
+  showToC,
+  content,
+} = Astro.props
+---
+
+<div class="inner">
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title={__('sidebar.toc')}>
+        { showToC && <PostToC content={content} /> }
+      </div>
+      <div class="related panel pjax" data-title={__('sidebar.related')}>
+        <!-- TODO -->
+      </div>
+      <div class="overview panel" data-title={__('sidebar.overview')}>
+        
+      </div>
+    </div>
+  </div>
+</div>
