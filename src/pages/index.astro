@@ -10,7 +10,7 @@ const posts = await getCollection('posts')
 const stickyPosts = await getCollection('posts', ({ data }) => !!data.sticky)
 ---
 
-<Layout title="test index name" desc="">
+<Layout title="test index name" desc="" content="">
     <div slot="content" class="index wrap">
       {
         index === 'index' && stickyPosts.length > 0 && (

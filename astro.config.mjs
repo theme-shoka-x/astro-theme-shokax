@@ -4,18 +4,16 @@ import vue from '@astrojs/vue'
 import yaml from 'js-yaml'
 
 // https://github.com/hexojs/hexo-renderer-stylus/blob/master/lib/renderer.js
+import cloudflare from '@astrojs/cloudflare'
+
 function getProperty(obj, name) {
   name = name.replace(/\[(\w+)\]/g, '.$1').replace(/^\./, '')
-
   const split = name.split('.')
   let key = split.shift()
-
   if (!Object.prototype.hasOwnProperty.call(obj, key))
     return ''
-
   let result = obj[key]
   const len = split.length
-
   if (!len) {
     if (result === 0)
       return result
@@ -23,20 +21,16 @@ function getProperty(obj, name) {
   }
   if (typeof result !== 'object')
     return ''
-
   for (let i = 0; i < len; i++) {
     key = split[i]
     if (!Object.prototype.hasOwnProperty.call(result, key))
       return ''
-
     result = result[split[i]]
     if (typeof result !== 'object')
       return result
   }
-
   return result
 }
-
 const config = yaml.load(fs.readFileSync('src/config.yml', 'utf8'))
 const define = {
   'astro-config': (data) => {
@@ -50,6 +44,9 @@ export default defineConfig({
   output: 'hybrid',
   integrations: [vue()],
   vite: {
+    ssr: {
+      external: ['node:fs'],
+    },
     css: {
       preprocessorOptions: {
         stylus: {
@@ -58,4 +55,5 @@ export default defineConfig({
       },
     },
   },
+  adapter: cloudflare(),
 })
