@@ -10,10 +10,10 @@ export async function getStaticPaths() {
   }))
 }
 
-const { entry } = Astro.props;
+const { entry } = Astro.props
 const { Content } = await entry.render();
 ---
-<Layout title={entry.data.title} desc={entry.data.description || ''}>
+<Layout title={entry.data.title} desc={entry.data.description || ''} content={entry.body}>
 <Content slot="content">
 
 </Content>

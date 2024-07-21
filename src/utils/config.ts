@@ -84,8 +84,12 @@ interface ExperimentsConfig {
   mobileWidth: string
 }
 
+interface menuItem {
+  [key: string]: string
+}
+
 interface MenuConfig {
-  [key: string]: string | { [key: string]: string }
+  [key: string]: string | menuItem
 }
 
 const config = yaml.load(fs.readFileSync('src/config.yml', 'utf8')) as {

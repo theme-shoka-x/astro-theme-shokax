@@ -9,7 +9,6 @@ const props = defineProps<{
     url?: string
     lang?: string
   }
-  languageData: any
 }>()
 
 const menuEntries = Object.entries(props.menu).map(([name, value]) => {
@@ -28,9 +27,9 @@ const menuEntries = Object.entries(props.menu).map(([name, value]) => {
       </a>
     </li>
     <template v-for="([name, value], index) in menuEntries" :key="index">
-      <MenuItem v-if="typeof value === 'string'" :name="name" :path="value" :language-data="languageData" />
+      <MenuItem v-if="typeof value === 'string'" :name="name" :path="value" />
       <template v-for="([subName, subValue], subIndex) in value" v-else :key="subIndex">
-        <MenuItem v-if="subName === 'default'" :name="name" :path="subValue" :parent="true" :sub-list="value" :language-data="languageData" />
+        <MenuItem v-if="subName === 'default'" :name="name" :path="subValue" :parent="true" :sub-list="value" />
       </template>
     </template>
   </ul>

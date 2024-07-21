@@ -6,7 +6,6 @@ const props = defineProps<{
   path: string
   parent?: boolean
   subList?: [string, string][]
-  languageData: any
 }>()
 
 const trim = (str?: string) => str != null ? str.trim() : ''
@@ -27,16 +26,16 @@ let subListEntries: {
   subMenuText: string
 }[] = []
 if (props.subList) {
-  subListEntries = props.subList.map(([subName, subValue]) => {
-    const subPath = subValue.split('||')
+  subListEntries = Object.entries(props.subList).map(([_, subValue]) => {
+    const subPath = subValue[1].split('||')
     let subItemURL = subPath[0].trim()
     if (subItemURL === '/')
       subItemURL = 'javascript:void(0)'
 
-    const subMenuText = __(`menu.${subName === 'default' ? props.name : subName}`).replace('menu.', '')
+    const subMenuText = __(`menu.${subValue[0] === 'default' ? props.name : subValue[0]}`).replace('menu.', '')
     return {
-      subName,
-      subValue,
+      subName: subValue[0],
+      subValue: subValue[1],
       subPath,
       subItemURL,
       subMenuText,

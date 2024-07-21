@@ -47,6 +47,7 @@ const define = {
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com',
+  output: 'hybrid',
   integrations: [vue()],
   vite: {
     css: {

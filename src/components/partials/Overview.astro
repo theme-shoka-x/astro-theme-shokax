@@ -1,0 +1,62 @@
+---
+import { Image } from 'astro:assets'
+import { menu, site } from '@utils/config'
+import { getCollection } from 'astro:content'
+import { __ } from '@utils/i18n'
+import { getCategoriesCount, getTagsCount } from '@utils/posts'
+import MenuBar from '@components/partials/header/nav/NavMenu.vue'
+import avatar from './../../assets/avatar.webp'
+
+const { length } = await getCollection('posts')
+---
+
+<div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <Image src={avatar} alt="avatar" class="image" itemprop="image"></Image>
+  <p class="name" itemprop="name">
+    { site.author }
+  </p>
+  <div class="description" itemprop="description">
+    { site.description }
+  </div>
+</div>
+
+<nav class="state">
+  <div class="item posts">
+    <a href="/archives/">
+      <span class="count">
+        { length }
+      </span>
+      <span class="name">
+        { __('state.posts') }
+      </span>
+    </a>
+  </div>
+  <div class="item categories">
+    <a href="categories">
+      <span class="count">
+        { await getCategoriesCount() }
+      </span>
+      <span class="name">
+        { __('state.categories') }
+      </span>
+    </a>
+  </div>
+  <div class="item tags">
+    <a href="tags">
+      <span class="count">
+        { await getTagsCount() }
+      </span>
+      <span class="name">
+        { __('state.tags') }
+      </span>
+    </a>
+  </div>
+</nav>
+
+<div class="social">
+  {/* TODO */}
+</div>
+
+<div class="menu">
+  <MenuBar menu={menu} site={site}></MenuBar>
+</div>

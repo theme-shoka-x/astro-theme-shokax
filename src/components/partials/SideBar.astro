@@ -1,6 +1,7 @@
 ---
 import { __ } from '@utils/i18n'
 import PostToC from '../post/PostToC.vue'
+import Overview from './Overview.astro'
 
 type Props = {
   showToC: boolean
@@ -23,7 +24,7 @@ const {
         <!-- TODO -->
       </div>
       <div class="overview panel" data-title={__('sidebar.overview')}>
-        
+        <Overview></Overview>
       </div>
     </div>
   </div>

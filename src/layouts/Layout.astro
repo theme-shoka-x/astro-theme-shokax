@@ -11,14 +11,16 @@ import { algolia, loader, site, fireworks } from '@utils/config'
 import { ViewTransitions } from 'astro:transitions'
 import SiteSearch from '@components/thirdparty/SiteSearch.vue'
 import { __ } from '@utils/i18n'
+import SideBar from '@components/partials/SideBar.astro'
 
 interface Props {
   title: string
   desc: string
   keywords?: string[]
+  content: string
 }
 
-const { title, desc, keywords } = Astro.props;
+const { title, desc, keywords, content } = Astro.props;
 ---
 
 <!doctype html>
@@ -51,6 +53,9 @@ main {
 
 }
 </style>
+<style lang="stylus" is:global>
+  @import '../styles/outline/sidebar/sidebar.styl'
+</style>
 
 <head>
   <BaseHead title={title} description={desc} keywords={keywords} />
@@ -68,7 +73,7 @@ main {
         </div>
         <div id="sidebar">
           <slot name="sidebar">
-            <!-- TODO -->
+            <SideBar showToC={false} content={content}></SideBar>
           </slot>
         </div>
         <div class="dimmer"></div>
