@@ -29,7 +29,10 @@ const { title, desc, keywords, content } = Astro.props;
   @import "../styles/_colors"; 
   @import "../styles/app"; 
 </style>
-<style>
+<style lang="stylus">
+@import "../styles/_mixins.styl";
+@import "../styles/_variables.styl";
+
 main {
   background: linear-gradient(to top, var(--body-bg-shadow) 0, var(--grey-1) 20%) no-repeat bottom;
 

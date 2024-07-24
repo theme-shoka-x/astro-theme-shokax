@@ -39,7 +39,7 @@ const define = {
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com',
-  output: 'hybrid',
+  output: 'static',
   integrations: [vue()],
   vite: {
     ssr: {
@@ -52,6 +52,5 @@ export default defineConfig({
         },
       },
     },
-  },
-  adapter: cloudflare(),
+  }
 })
