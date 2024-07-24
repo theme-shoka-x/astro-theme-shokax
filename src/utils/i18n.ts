@@ -1,6 +1,4 @@
-import fs from 'node:fs'
 import Ctor from 'hexo-i18n'
-import yaml from 'js-yaml'
 
 import { site } from './config'
 
@@ -10,9 +8,7 @@ const i18n = new Ctor({
   languages: [language],
 })
 
-i18n.set(language, yaml.load(
-  fs.readFileSync(`src/languages/${language}.yml`, 'utf8'),
-) as Record<string, any>)
+i18n.set(language, await import(`../languages/${language}.json`) as Record<string, any>)
 
 // eslint-disable-next-line ts/ban-ts-comment
 // @ts-expect-error

@@ -1,10 +1,9 @@
-import fs from 'node:fs'
 import { defineConfig } from 'astro/config'
 import vue from '@astrojs/vue'
-import yaml from 'js-yaml'
 
 // https://github.com/hexojs/hexo-renderer-stylus/blob/master/lib/renderer.js
 import cloudflare from '@astrojs/cloudflare'
+import { config } from './src/config'
 
 function getProperty(obj, name) {
   name = name.replace(/\[(\w+)\]/g, '.$1').replace(/^\./, '')
@@ -31,7 +30,6 @@ function getProperty(obj, name) {
   }
   return result
 }
-const config = yaml.load(fs.readFileSync('src/config.yml', 'utf8'))
 const define = {
   'astro-config': (data) => {
     return getProperty(config, data.val)

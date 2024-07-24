@@ -1,8 +1,7 @@
-import fs from 'node:fs'
-import yaml from 'js-yaml'
 import type firework from 'mouse-firework'
+import { config } from '../config'
 
-interface SiteConfig {
+export interface SiteConfig {
   title: string
   description: string
   url: string
@@ -13,7 +12,7 @@ interface SiteConfig {
   subtitle: string
 }
 
-interface FooterConfig {
+export interface FooterConfig {
   since: number
   icon: {
     color: string
@@ -30,35 +29,35 @@ interface FooterConfig {
   }
 }
 
-interface AlgoliaSearchConfig {
+export interface AlgoliaSearchConfig {
   enable: boolean
   indexName: string
   appId: string
   apiKey: string
 }
 
-interface LoaderConfig {
+export interface LoaderConfig {
   start: boolean
   switch: boolean
 }
 
-interface VisitorConfig {
+export interface VisitorConfig {
   clarity: string | boolean
   baiduAnalytics: string | boolean
   googleAnalytics: string | boolean
 }
 
-interface FireworksConfig {
+export interface FireworksConfig {
   enable: boolean
   options: Parameters<typeof firework>[0]
 }
 
-interface WidgetsConfig {
+export interface WidgetsConfig {
   random_posts: boolean
   recent_comments: boolean
 }
 
-interface TwikooConfig {
+export interface TwikooConfig {
   enable: boolean
   link: string
   mode: string
@@ -66,7 +65,7 @@ interface TwikooConfig {
   region: string
 }
 
-interface WalineConfig {
+export interface WalineConfig {
   enable: boolean
   serverURL: string
   lang: string
@@ -79,32 +78,17 @@ interface WalineConfig {
   pageview: boolean
 }
 
-interface ExperimentsConfig {
+export interface ExperimentsConfig {
   usingRelative: boolean
   mobileWidth: string
 }
 
-interface menuItem {
+export interface menuItem {
   [key: string]: string
 }
 
-interface MenuConfig {
+export interface MenuConfig {
   [key: string]: string | menuItem
-}
-
-const config = yaml.load(fs.readFileSync('src/config.yml', 'utf8')) as {
-  site: Partial<SiteConfig>
-  footer: Partial<FooterConfig>
-  algolia: AlgoliaSearchConfig
-  loader: LoaderConfig
-  visitor: VisitorConfig
-  fireworks: FireworksConfig
-  widgets: WidgetsConfig
-  twikoo: TwikooConfig
-  waline: WalineConfig
-  experiments: ExperimentsConfig
-  image_server?: string
-  menu: MenuConfig
 }
 
 export const BASE_URL = import.meta.env.BASE_URL.endsWith('/')
